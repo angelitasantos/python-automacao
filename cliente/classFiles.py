@@ -120,5 +120,15 @@ class Files:
             Base.executar_comando_mkdir(self, caminho)
         except:
             Base.alertar_error_except(self, 'classFiles', 'criar_novas_pastas')
-            
 
+    def copiar_novo_arquivo(self, caminho, arquivo):
+        try:
+            modelo = VarRede.caminho_modelo + Files.capa_modelo
+            Base.executar_hotkey_copiar(self, modelo, caminho)
+            rename_item = f'Rename-Item "{caminho}\\{Files.capa_modelo}" "{arquivo}"'
+            pyperclip.copy(rename_item)
+            time.sleep(Base.time_sleep_1)
+            Base.executar_hotkey_colar(self)
+            Base.fechar_powershell(self)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'copiar_novo_arquivo')
