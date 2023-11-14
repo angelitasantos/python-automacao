@@ -79,6 +79,16 @@ class Ano:
         except:
             Base.alertar_error_except(self, 'classAno', 'escolher_tipo_ano')
 
-
+    def escolher_ano(self):
+        try:
+            tipo_ano = Ano.escolher_tipo_ano(self) if Ano.pesquisar_tipo_processo(self) == 'completo' else 'ANO ATUAL'
+            if tipo_ano == 'ANO ANTERIOR':
+                ano_escolhido = Ano.validar_ano_anterior(self) if Ano.pesquisar_tipo_processo(self) == 'completo' else 2023
+                return ano_escolhido
+            elif tipo_ano == 'ANO ATUAL':
+                ano_escolhido, data_atual, ano_anterior_default = Ano.gerar_data_atual(self)
+                return ano_escolhido
+        except:
+            Base.alertar_error_except(self, 'classAno', 'escolher_ano')
 
 
