@@ -66,4 +66,14 @@ class Base:
         Base.executar_hotkey_colar(self)
         time.sleep(Base.time_sleep_1)
 
+    def executar_comando_mkdir(self, caminho):
+        time.sleep(Base.time_sleep_1)
+        comando_mkdir = f'mkdir "{caminho}"'
+        pyperclip.copy(comando_mkdir)
+        time.sleep(Base.time_sleep_1)
+        Base.executar_hotkey_colar(self)
+        time.sleep(Base.time_sleep_1)
+
+
+
 
