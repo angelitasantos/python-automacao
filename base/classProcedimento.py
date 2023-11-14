@@ -64,6 +64,21 @@ class Proc:
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_criar_pastas')
 
-    
-
+    def escolher_subprocedimento_atualizar(self, procedimento):
+        cod_proc = '2' if procedimento == Proc.procedimento2 else 9
+        subproc21 = 'DADOS DI (XML)'
+        subproc22 = 'DADOS SAUDE'
+        subproc23 = 'DI (XML) EM MASSA'
+        try:
+            if cod_proc == '2':
+                texto = 'O que deseja atualizar ?'
+                titulo = 'OPÇÃO'
+                botoes = [ subproc21, subproc22, subproc23, 'VOLTAR' ]
+                subproc = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                cod_subproc = cod_proc + '1' if subproc == subproc21 else cod_proc + '2' if subproc == subproc22 else cod_proc + '3' if subproc == subproc23 else 9
+                #anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '22' else cod_subproc
+                #cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                return cod_subproc
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_atualizar')
 
