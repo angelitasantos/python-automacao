@@ -69,6 +69,16 @@ class Files:
         except:
             Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_processo')
 
-
+    def abrir_pasta_comex(self):
+        try:
+            caminho_comex = Rede.escolher_caminho_comex(self, RedeResult.tipo_comex)
+            caminho_imp = caminho_comex + AnoResult.ano_completo + '\\' + RedeResult.tipo_movto
+            caminho_exp = caminho_comex
+            caminho_movto = caminho_exp if RedeResult.tipo_comex == 'E' else caminho_imp
+            Base.abrir_pasta(self, caminho_movto)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_comex')
 
             
+
+
