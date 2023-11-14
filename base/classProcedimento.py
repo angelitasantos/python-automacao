@@ -31,4 +31,24 @@ class Proc:
     subproc45 = 'VCP AIRPORT'
     subproc46 = 'CWB'
 
+    def escolher_procedimento(self, historico):
+        try:
+            texto = 'Qual o procedimento deseja executar ?'
+            titulo = 'OPÇÃO'
+            if (historico == 'SIM'):
+                botoes = [ Proc.procedimento2, Proc.procedimento3, Proc.procedimento4, 'SAIR' ]
+                procedimento = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+            elif (historico == 'NÃO'):
+                botoes = [ Proc.procedimento2, Proc.procedimento1, Proc.procedimento3, Proc.procedimento4, 'SAIR' ]
+                procedimento = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+            if procedimento == None:
+                procedimento = 'SAIR'
+                return procedimento
+            else:
+                return procedimento
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_procedimento')
 
+
+
+            
