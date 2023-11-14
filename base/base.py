@@ -112,3 +112,8 @@ class Base:
     def alertar_finalizado(self):
         mensagem = 'PROCESSO FINALIZADO !!!'
         Base.alertar_pyautogui(self, mensagem)
+
+    def alertar_error_except(self, arquivo, funcao):
+        arquivo_funcao = f'ARQUIVO: {arquivo}.py\nCLASS/FUNÇÃO: {funcao}'
+        mensagem = f'Entre em contato com o ADMINISTRADOR !!!\n\nErro na execução do\n{arquivo_funcao}'
+        Base.alertar_pyautogui(self, mensagem)
