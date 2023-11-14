@@ -111,4 +111,49 @@ class Proc:
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_historico')
 
-    
+    def escolher_subprocedimento_auditoria(self, procedimento):
+        cod_proc = '4' if procedimento == Proc.procedimento4 else 9
+        try:
+            if cod_proc == '4':
+                texto = 'Qual local deseja auditar ?'
+                titulo = 'OPÇÃO'
+                botoes = [  Proc.subproc41, Proc.subproc42, Proc.subproc43, Proc.subproc44, Proc.subproc45, Proc.subproc46, 'VOLTAR' ]
+                subproc = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+
+                match subproc:
+                    case Proc.subproc41:
+                        cod_subproc = cod_proc + '1'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '41' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case Proc.subproc42:
+                        cod_subproc = cod_proc + '2'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '42' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case Proc.subproc43:
+                        cod_subproc = cod_proc + '3'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '43' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case Proc.subproc44:
+                        cod_subproc = cod_proc + '4'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '44' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case Proc.subproc45:
+                        cod_subproc = cod_proc + '5'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '45' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case Proc.subproc46:
+                        cod_subproc = cod_proc + '6'
+                        anunciar_construcao = Base.anunciar_em_construcao(self) if cod_subproc == '46' else cod_subproc
+                        cod_subproc = 9 if anunciar_construcao == 'OK' else cod_subproc
+                    case 'VOLTAR':
+                        cod_subproc = 9
+                    case None:
+                        cod_subproc = 9
+
+                return cod_subproc
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_auditoria')
+
+
+
+            
