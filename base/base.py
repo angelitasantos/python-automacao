@@ -40,5 +40,10 @@ class Base:
         pyautogui.press('enter')
         time.sleep(Base.time_sleep_1)
 
-
+    def fechar_powershell(self):
+        pyautogui.write('exit')
+        time.sleep(Base.time_sleep_1)
+        pyautogui.press('enter')
+        time.sleep(Base.time_sleep_1)
+        
 
