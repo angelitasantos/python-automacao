@@ -74,6 +74,11 @@ class Base:
         Base.executar_hotkey_colar(self)
         time.sleep(Base.time_sleep_1)
 
-
-
-
+    def abrir_pasta(self, pasta):
+        pyautogui.hotkey('win', 'r')
+        time.sleep(Base.time_sleep_1)
+        pyperclip.copy(pasta)
+        time.sleep(Base.time_sleep_1)
+        Base.executar_hotkey_colar(self)
+        pyautogui.hotkey('esc')
+        time.sleep(Base.time_sleep_1)
