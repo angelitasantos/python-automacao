@@ -57,3 +57,13 @@ class Base:
         pyperclip.copy(copiar_item)
         time.sleep(Base.time_sleep_1)
         Base.executar_hotkey_colar(self)
+
+    def executar_comando_cd(self, caminho_rede):
+        time.sleep(Base.time_sleep_1)
+        comando_cd = f'cd "{caminho_rede}"'
+        pyperclip.copy(comando_cd)
+        time.sleep(Base.time_sleep_1)
+        Base.executar_hotkey_colar(self)
+        time.sleep(Base.time_sleep_1)
+
+
