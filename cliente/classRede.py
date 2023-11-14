@@ -125,5 +125,40 @@ class Rede:
                     return caminho_comex, caminho_movto, tipo_movto
         except:
            Base.alertar_error_except(self, 'classRede', 'escolher_caminho_movto')
-           
+
+class RedeResult:
+
+    def __init__(self, rede):
+        self.rede = rede
+
+    def __repr__(self):
+        return self.excel     
+
+    def definir_variaveis_rede(self):
+        try:
+            if ProcResult.valida_proc:
+                tipo_comex, tipo_comex_nome = Rede.escolher_tipo_comex(Base.self)
+                if tipo_comex != 'Z':
+                    caminho_comex, caminho_movto, tipo_movto = Rede.escolher_caminho_movto(self, tipo_comex)
+                    if tipo_movto != 'Z' and Rede.proc_com_modal:
+                        tipo_modal, tipo_modal_nome = Rede.escolher_tipo_modal(self)
+                    else:
+                        tipo_modal = tipo_modal_nome = 'Z'
+                else:
+                    tipo_comex = tipo_comex_nome = tipo_movto = tipo_modal = tipo_modal_nome = caminho_comex = caminho_movto = 'Z'
+            else:
+                tipo_comex = tipo_comex_nome = tipo_movto = tipo_modal = tipo_modal_nome = caminho_comex = caminho_movto = 'Z'
+
+            if Rede.proc_com_modal and tipo_comex != 'Z':
+                valida_rede = tipo_comex != 'Z' and tipo_movto != 'Z' and tipo_modal != 'Z'
+            else:
+                valida_rede = tipo_comex != 'Z' and tipo_movto != 'Z'
+            return valida_rede, tipo_comex, tipo_comex_nome, tipo_movto, tipo_modal, tipo_modal_nome, caminho_comex, caminho_movto
+        except:
+            Base.alertar_error_except(self, 'classRede', 'definir_variaveis_rede')
+
+    valida_rede, tipo_comex, tipo_comex_nome, tipo_movto, tipo_modal, tipo_modal_nome, caminho_comex, caminho_movto = definir_variaveis_rede(Base.self)
+
+
+
 
