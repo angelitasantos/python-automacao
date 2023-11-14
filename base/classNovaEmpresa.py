@@ -95,6 +95,50 @@ class NovaEmpresa:
         except:
             Base.alertar_error_except(self, 'classNovaEmpresa', 'copiar_arquivos')
 
+class EmpresaResult:
 
+    def __init__(self, geral):
+        self.geral = geral
+    
+    def __repr__(self):
+        return self.geral
 
-            
+    def criar_novas_pastas_arquivos(self):
+        try:
+            cria_caminho = NovaEmpresa.criar_nova_empresa(self)
+
+            if cria_caminho != None and cria_caminho == True:
+                caminho = VarGerais.dir_rede + VarGerais.empresa
+                existe_caminho, caminho = Base.pesquisar_existe_caminho_rede(self, caminho)
+
+                if cria_caminho and not existe_caminho:
+                    texto = 'Deseja criar as pastas para o cliente ?'
+                    titulo = 'CONFIRMA'
+                    botoes = [ 'SIM', 'NÃO' ]
+                    cria_pastas = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+
+                    if cria_pastas == 'SIM':
+                        texto = 'Digite o caminho dos arquivos de modelo ...'
+                        caminho_modelo = f'{Base.digitar_pyautogui(self, texto, "INFORME", "")}\\'
+                        existe_arquivos_modelos = NovaEmpresa.pesquisar_existe_arquivos_modelos(self, caminho_modelo)
+                        
+                        if existe_arquivos_modelos and caminho_modelo != None:
+                            mouse_listener = pynput.mouse.Listener(suppress = True)
+                            mouse_listener.start()
+                            NovaEmpresa.criar_novos_caminhos(self)
+                            NovaEmpresa.criar_pastas_internas(self)
+                            NovaEmpresa.copiar_arquivos(self, caminho_modelo)
+                            mouse_listener.stop()
+                            Base.alertar_finalizado(self)
+                            executar = 'EXECUTAR'
+                            return executar
+                        
+                        else:
+                            executar = 'CANCELAR'
+                            return executar
+                
+            else:
+                executar = 'EXECUTAR'
+                return executar
+        except:
+            Base.alertar_error_except(self, 'classNovaEmpresa', 'criar_novas_pastas_arquivos')
