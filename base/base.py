@@ -45,5 +45,10 @@ class Base:
         time.sleep(Base.time_sleep_1)
         pyautogui.press('enter')
         time.sleep(Base.time_sleep_1)
-        
+
+    def executar_hotkey_colar(self):
+        pyautogui.hotkey('ctrl', 'v')
+        time.sleep(Base.time_sleep_1)
+        pyautogui.press('enter')
+        time.sleep(Base.time_sleep_1)
 
