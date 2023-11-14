@@ -112,5 +112,3 @@ class Base:
     def alertar_finalizado(self):
         mensagem = 'PROCESSO FINALIZADO !!!'
         Base.alertar_pyautogui(self, mensagem)
-
-    
