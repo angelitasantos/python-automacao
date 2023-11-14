@@ -56,4 +56,24 @@ class NovaEmpresa:
         except:
             Base.alertar_error_except(self, 'classNovaEmpresa', 'criar_pastas_internas')
 
-
+    def pesquisar_existe_arquivos_modelos(self, caminho_modelo):
+        try:
+            if caminho_modelo == None:
+                existe_arquivos_modelos = False
+                return existe_arquivos_modelos
+            else:
+                existe_em_massa, arquivo = Base.pesquisar_existe_arquivo(self, caminho_modelo, VarRede.modelo_em_massa)
+                existe_capa, arquivo = Base.pesquisar_existe_arquivo(self, caminho_modelo, VarRede.modelo_capa)
+                existe_financeiro, arquivo = Base.pesquisar_existe_arquivo(self, caminho_modelo, VarRede.modelo_financeiro)
+                if existe_em_massa and existe_capa and existe_financeiro:
+                    existe_arquivos_modelos = True
+                    return existe_arquivos_modelos
+                else:
+                    time.sleep(Base.time_sleep_1)
+                    mensagem = f'Os arquivos modelos não estão salvos no mesmo local!\nSalve-os corretamente e refaça o procedimento.'
+                    Base.alertar_pyautogui(self, mensagem)
+                    existe_arquivos_modelos = False
+                    return existe_arquivos_modelos
+        except:
+            Base.alertar_error_except(self, 'classNovaEmpresa', 'pesquisar_existe_arquivos_modelos')
+            
