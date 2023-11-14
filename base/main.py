@@ -12,3 +12,23 @@ class ExcelExterno:
     
     def __repr__(self):
         return self.excel
+
+    nome_arquivo = 'main_variaveis_senha_2023.xlsx'
+    dir_arquivo = 'C:\\'
+    caminho_arquivo = dir_arquivo + nome_arquivo
+    existe_arquivo_main_variaveis, arquivo_main_variaveis = Base.pesquisar_existe_arquivo(Base.self, dir_arquivo, nome_arquivo)
+
+    mensagem = f'O arquivo:\n{nome_arquivo}\nnão está salvo no local correto !!!\nSalve-o corretamente e refaça o procedimento !!!'
+    
+    if not existe_arquivo_main_variaveis:
+        Base.alertar_pyautogui(Base.self, mensagem)
+
+    else:
+        workbook = load_workbook(caminho_arquivo, data_only = True)
+        var_gerais = workbook['var_gerais']
+        var_rede = workbook['var_rede']
+        var_saude = workbook['var_saude']
+        var_auditoria = workbook['var_auditoria']
+        listas = workbook['listas']
+        m_row = listas.max_row
+
