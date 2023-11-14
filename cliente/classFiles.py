@@ -50,6 +50,10 @@ class Files:
         except:
             Base.alertar_error_except(self, 'classFiles', 'definir_variaveis')
 
-
+    def abrir_pasta_modelo(self):
+        try:
+            Base.abrir_pasta(self, VarRede.caminho_modelo)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_modelo')
             
-              
+
