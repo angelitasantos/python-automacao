@@ -55,5 +55,20 @@ class Files:
             Base.abrir_pasta(self, VarRede.caminho_modelo)
         except:
             Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_modelo')
-            
 
+    def abrir_pasta_processo(self, caminho):
+        try:
+            existe_caminho, caminho = Base.pesquisar_existe_caminho_rede(self, caminho)
+
+            if existe_caminho:
+                Base.abrir_pasta(self, caminho)
+            else:
+                mensagem = 'A pasta deste processo não foi encontrada !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                time.sleep(Base.time_sleep_1)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_processo')
+
+
+
+            
