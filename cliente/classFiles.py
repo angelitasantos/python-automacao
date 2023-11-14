@@ -115,6 +115,10 @@ class Files:
         except:
             Base.alertar_error_except(self, 'classFiles', 'abrir_arquivo_capa')
 
-
-
+    def criar_nova_pasta(self, caminho):
+        try:
+            Base.executar_comando_mkdir(self, caminho)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'criar_novas_pastas')
             
+
