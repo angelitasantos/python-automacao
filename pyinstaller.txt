@@ -1,0 +1,19 @@
+Procedimento para criar o executável
+
+Atualizar PIP
+python.exe -m pip install --upgrade pip
+
+Ambiente Virtual
+win
+pip install virtualenv
+python -m venv venv
+venv\Scripts\Activate
+
+instalar as bibliotecas utilizadas no ambiente virtual
+pip install pyinstaller pyautogui elementpath pandas openpyxl pynput
+
+criar o executável
+pyinstaller --onefile -w automacao.py
+
+deletar a pasta build e o arquivo progress.spec
+o executável estará dentro da pasta dist
