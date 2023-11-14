@@ -27,4 +27,29 @@ class Files:
         file_imp = f'{VarRede.capa_base}{tipo_modal_nome} {VarGerais.apelido} - 0000.xlsx'
         file_exp = f'{VarRede.capa_base}Exportação {VarGerais.apelido}0000.xlsx'
         capa_modelo = file_exp if tipo_comex == 'E' else file_imp
-        
+
+    def definir_variaveis(self):
+        try:
+            pasta_imp = f'{Files.tipo_sigla}-{Files.ref_cliente} - {Files.tipo_ref}-{Files.ref_empresa}-{AnoResult.ano_simples}'
+            pasta_exp = f'{Files.tipo_ref}-{Files.ref_empresa}-{AnoResult.ano_simples} - {Files.tipo_sigla}-{Files.ref_cliente}'
+            pasta = pasta_exp if Files.tipo_comex == 'E' else pasta_imp
+
+            pasta_interna_imp = VarGerais.pasta_interna_imp
+            pasta_interna_exp = VarGerais.pasta_interna_exp
+            pasta_interna = pasta_interna_exp if Files.tipo_comex == 'E' else pasta_interna_imp
+
+            caminho = Files.caminho_movto
+            processo = caminho + pasta
+            processo_pc = caminho + pasta + '\\' + pasta_interna
+
+            file_imp_new = f'{VarRede.capa_base}{Files.tipo_modal_nome} {VarGerais.apelido} - {Files.tipo_sigla} - {Files.ref_cliente}.xlsx'
+            file_exp_new = f'{VarRede.capa_base}Exportação {VarGerais.apelido} - {Files.tipo_sigla}{Files.ref_cliente}.xlsx'
+            capa_novo = file_exp_new if Files.tipo_comex== 'E' else file_imp_new
+
+            return caminho, pasta, pasta_interna, processo, processo_pc, Files.capa_modelo, capa_novo
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'definir_variaveis')
+
+
+            
+              
