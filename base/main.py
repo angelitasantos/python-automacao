@@ -118,7 +118,32 @@ class VarRede:
     except:
         Base.alertar_error_except(Base.self, 'main', 'VarRede')
 
+class VarSaude:
 
+    def __init__(self, variaveis_saude):
+        self.variaveis_saude = variaveis_saude
+    
+    def __repr__(self):
+        return self.variaveis_saude
+
+    try:
+        caminho_financeiro = ExcelExterno.var_saude['C3'].value
+        caminho_rede = VarGerais.dir_financeiro + caminho_financeiro
+        pasta_financeiro = ExcelExterno.var_saude['C4'].value
+
+        arquivo_saude = ExcelExterno.var_saude['C5'].value
+        arquivo_saude_backup = ExcelExterno.var_saude['C6'].value
+        arquivo_saude_base = ExcelExterno.var_saude['C7'].value
+        arquivo_saude_processos = ExcelExterno.var_saude['C8'].value
+        
+        caminho_completo = caminho_rede + arquivo_saude
+        empresa_banco1 = ExcelExterno.var_saude['C9'].value
+        empresa_banco2 = ExcelExterno.var_saude['C10'].value
+        banco1 = ExcelExterno.var_saude['C11'].value
+        banco2 = ExcelExterno.var_saude['C12'].value
+        require_cols = [1, 3, 4, 6, 7, 8, 9, 10]
+    except:
+        Base.alertar_error_except(Base.self, 'main', 'VarSaude')
 
 
 
