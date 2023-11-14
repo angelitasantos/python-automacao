@@ -32,3 +32,13 @@ class ExcelExterno:
         listas = workbook['listas']
         m_row = listas.max_row
 
+    def listar_dados(self, m_row, listas, coluna):
+        exportados = []
+        for i in range(2, m_row + 1):
+            cell_obj = listas.cell(row = i, column = coluna)
+            exportados.append(cell_obj.value)
+        return exportados
+
+
+
+
