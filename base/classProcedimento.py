@@ -170,5 +170,40 @@ class Proc:
             return cod_procedimento
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_codigo')
+  
+class ProcResult:
 
-            
+    def __init__(self, procedimento):
+        self.procedimento = procedimento
+    
+    def __repr__(self):
+        return self.ano
+    
+    def definir_variaveis_proc(self):
+        try:
+            if AnoResult.valida_ano:
+                procedimento = Proc.escolher_procedimento(Base.self, AnoResult.historico_ano)
+                if procedimento != 'SAIR':
+                    cod_proc = Proc.escolher_codigo(Base.self, procedimento)
+                    
+                    while cod_proc == 9 and procedimento != 'SAIR':
+                        procedimento = Proc.escolher_procedimento(Base.self, AnoResult.historico_ano)
+                        cod_proc = Proc.escolher_codigo(Base.self, procedimento)
+
+                    cod_proc = cod_proc
+                    historico_proc = 'SIM' if procedimento == 3 else 'NÃO'
+                else:
+                    historico_proc = 'NÃO'
+                    cod_proc = 0
+            else:
+                historico_proc = 'NÃO'
+                cod_proc = 0
+                procedimento = ''
+
+            valida_proc = AnoResult.valida_ano and procedimento != 0 and procedimento != None and cod_proc != 0 and cod_proc != None
+            return valida_proc, cod_proc, procedimento, historico_proc
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'definir_variaveis_proc')
+
+    valida_proc, cod_proc, procedimento, historico_proc = definir_variaveis_proc(Base.self)
+
