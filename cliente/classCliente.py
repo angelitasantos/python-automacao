@@ -152,4 +152,44 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'apresentar_tela_dados')
 
-    
+    def tentar_confirmar(self, confirma_dados_ref):
+        try:
+            if Rede.proc_com_modal:
+                confirma_dados = confirma_dados_ref
+                while VarGerais.tentativas <= VarGerais.total_tentativas and confirma_dados == 'NÃO':
+                    var_dif = VarGerais.total_tentativas - VarGerais.tentativas
+                    mensagem = f'Você tem {var_dif} tentativa(s) para corrigí-los!!!'
+                    Base.alertar_pyautogui(self, mensagem)
+                    tipo_comex, tipo_comex_nome = Rede.escolher_tipo_comex(self)
+
+                    if tipo_comex != 'Z':
+                        caminho_comex, caminho_movto, tipo_movto = Rede.escolher_caminho_movto(self, tipo_comex)
+                        if tipo_movto != 'Z':
+                            tipo_modal, tipo_modal_nome = Rede.escolher_tipo_modal(self)
+                    else:
+                        tipo_comex = tipo_comex_nome = tipo_movto = tipo_modal = tipo_modal_nome = caminho_comex = caminho_movto = 'Z'
+                        
+                    if tipo_comex != 'Z':
+                        ref_cliente, ref_empresa, sigla_comex, sigla_comex_index, ref_interna = Cliente.retornar_informacoes_cliente(self)
+                        lista_dados_conf =  [  
+                                                ref_cliente, ref_empresa,
+                                                tipo_comex, tipo_comex_nome, 
+                                                tipo_movto, 
+                                                tipo_modal, tipo_modal_nome, caminho_movto,
+                                                sigla_comex, sigla_comex_index, ref_interna
+                                            ]
+                        confirma_dados = Cliente.apresentar_tela_dados(self, lista_dados_conf)
+                    else:
+                        confirma_dados = 'SIM'
+                        lista_dados_conf = ['', '']
+                    VarGerais.tentativas += 1
+
+                    if confirma_dados == 'CANCELAR':
+                        AnoResult.ano_processo = None
+                        ProcResult.cod_proc = 0
+                return confirma_dados, lista_dados_conf
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'tentar_confirmar')
+
+
+            
