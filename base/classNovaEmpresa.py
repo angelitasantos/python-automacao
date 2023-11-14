@@ -76,4 +76,25 @@ class NovaEmpresa:
                     return existe_arquivos_modelos
         except:
             Base.alertar_error_except(self, 'classNovaEmpresa', 'pesquisar_existe_arquivos_modelos')
+
+    def copiar_arquivos(self, caminho_modelo):
+        try:
+            origem_em_massa = caminho_modelo + '\\' + VarRede.modelo_em_massa
+            origem_capa = caminho_modelo + '\\' + VarRede.modelo_capa
+            origem_financeiro = caminho_modelo + '\\' + VarRede.modelo_financeiro
+            existe_arquivos_modelos = NovaEmpresa.pesquisar_existe_arquivos_modelos(self, caminho_modelo)
+            if existe_arquivos_modelos:
+                Base.abrir_powershell(self)
+                Base.executar_comando_cd(self, VarGerais.dir_rede)
+                destino_capa = VarGerais.dir_rede + VarGerais.empresa + '\\' + VarRede.pasta_arquivos_modelo
+                destino_financeiro = VarGerais.dir_rede + VarGerais.empresa + '\\' + VarSaude.pasta_financeiro
+                Base.executar_hotkey_copiar(self, origem_em_massa, destino_capa)
+                Base.executar_hotkey_copiar(self, origem_capa, destino_capa)
+                Base.executar_hotkey_copiar(self, origem_financeiro, destino_financeiro)
+                Base.fechar_powershell(self)
+        except:
+            Base.alertar_error_except(self, 'classNovaEmpresa', 'copiar_arquivos')
+
+
+
             
