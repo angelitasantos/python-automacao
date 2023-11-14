@@ -122,3 +122,8 @@ class Base:
         mensagem = 'Procedimento em Construção/Atualização !!!'
         alerta_construcao = Base.alertar_pyautogui(self, mensagem)
         return alerta_construcao
+
+    def existe_caminho_rede(self, caminho):
+        existe_caminho = os.path.exists(caminho)
+        return existe_caminho, caminho
+    
