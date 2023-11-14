@@ -67,3 +67,29 @@ class Rede:
                 return tipo_movto
         except:
             Base.alertar_error_except(self, 'classRede', 'escolher_tipo_movto')
+
+    def escolher_tipo_modal(self):
+        try:
+            if Rede.proc_com_modal and ProcResult.procedimento != Proc.procedimento4:
+                texto = 'Escolha uma Opção ...'
+                titulo = 'OPÇÃO'
+                botoes = [ 'AÉREA', 'MARÍTIMA', 'RODOVIÁRIA' ]
+                tipo_modal_nome = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                tipo_modal = 'R' if tipo_modal_nome == 'RODOVIÁRIA' else 'M' if tipo_modal_nome == 'MARÍTIMA' else 'A' if tipo_modal_nome == 'AÉREA' else 'Z'
+                tipo_modal_nome = VarRede.modal_rodoviario if tipo_modal_nome == 'RODOVIÁRIA' else VarRede.modal_maritimo if tipo_modal_nome == 'MARÍTIMA' else VarRede.modal_aereo if tipo_modal_nome == 'AÉREA' else 'Z'
+                return tipo_modal, tipo_modal_nome
+            
+            elif ProcResult.procedimento == Proc.procedimento4:
+                tipo_modal = 'Z'
+                tipo_modal_nome = 'Z'
+                return tipo_modal, tipo_modal_nome
+            
+            else:
+                tipo_modal = 'Z'
+                tipo_modal_nome = 'Z'
+                return tipo_modal, tipo_modal_nome
+        except:
+            Base.alertar_error_except(self, 'classRede', 'escolher_tipo_modal')
+
+
+            
