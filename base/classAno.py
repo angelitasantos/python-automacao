@@ -27,3 +27,13 @@ class Ano:
                 return processo_ativo
         except:
             Base.alertar_error_except(self, 'classAno', 'pesquisar_tipo_processo')
+
+    def gerar_data_atual(self):
+        try:
+            data_atual = date.today()
+            ano_atual = date.today().year
+            data_formatada_br = data_atual.strftime('%d/%m/%Y')
+            ano_anterior_default = ano_atual - 1
+            return ano_atual, data_formatada_br, ano_anterior_default
+        except:
+            Base.alertar_error_except(self, 'classAno', 'gerar_data_atual')
