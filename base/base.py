@@ -27,3 +27,18 @@ class Base:
 
     def __repr__(self):
         return self.base
+    
+    self = 'self'
+    time_sleep_1 = 1
+    time_sleep_3 = 3
+ 
+    def abrir_powershell(self):
+        pyautogui.hotkey('win', 'r')
+        time.sleep(Base.time_sleep_1)
+        pyautogui.write('powershell')
+        time.sleep(Base.time_sleep_1)
+        pyautogui.press('enter')
+        time.sleep(Base.time_sleep_1)
+
+
+
