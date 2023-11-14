@@ -82,3 +82,13 @@ class Base:
         Base.executar_hotkey_colar(self)
         pyautogui.hotkey('esc')
         time.sleep(Base.time_sleep_1)
+
+    def alertar_pyautogui(self, mensagem):
+        alerta = pyautogui.alert    (   
+                                        text = mensagem,
+                                        title = 'ALERTA !!!',
+                                        button = 'OK'
+                                    )
+        return alerta
+    
+
