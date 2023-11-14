@@ -82,3 +82,33 @@ class Proc:
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_atualizar')
 
+    def escolher_subprocedimento_historico(self, procedimento):
+        cod_proc = '3' if procedimento == Proc.procedimento3 else 9
+        try:
+            if cod_proc == '3':
+                texto = 'O que deseja abrir ?'
+                titulo = 'OPÇÃO'
+                botoes = [ Proc.subproc31, Proc.subproc32, Proc.subproc33, Proc.subproc34, Proc.subproc35, 'VOLTAR' ]
+                subproc = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                
+            match subproc:
+                case Proc.subproc31:
+                    cod_subproc = cod_proc + '1'
+                case Proc.subproc32:
+                    cod_subproc = cod_proc + '2'
+                case Proc.subproc33:
+                    cod_subproc = cod_proc + '3'
+                case Proc.subproc34:
+                    cod_subproc = cod_proc + '4'
+                case Proc.subproc35:
+                    cod_subproc = cod_proc + '5'
+                case 'VOLTAR':
+                    cod_subproc = 9
+                case None:
+                    cod_subproc = 9
+
+            return cod_subproc
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_historico')
+
+    
