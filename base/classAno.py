@@ -37,3 +37,23 @@ class Ano:
             return ano_atual, data_formatada_br, ano_anterior_default
         except:
             Base.alertar_error_except(self, 'classAno', 'gerar_data_atual')
+
+    def escolher_ano_anterior(self):
+        try:
+            ano_atual, data_atual, ano_anterior_default = Ano.gerar_data_atual(self)
+            texto = f'Digite o Ano do Processo.\nEscreva quatro digítos para continuar.'
+            escolher_ano_anterior = Base.digitar_pyautogui(self, texto, 'INFORME', ano_anterior_default)
+            if escolher_ano_anterior != None:
+                ano_anterior = escolher_ano_anterior
+                len_escolha = len(escolher_ano_anterior)
+                return ano_anterior, len_escolha
+            else:
+                ano_anterior = ''
+                len_escolha = 4
+                return ano_anterior, len_escolha
+        except:
+            Base.alertar_error_except(self, 'classAno', 'escolher_ano_anterior')
+
+
+
+
