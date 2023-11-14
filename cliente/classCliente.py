@@ -214,6 +214,37 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'confirmar_dados')
 
+class CliResult:
+
+    def __init__(self, cliente):
+        self.cliente = cliente
+
+    def __repr__(self):
+        return self.cliente
+
+    def definir_variaveis_cliente(self):
+        try:
+            if RedeResult.valida_rede and ProcResult.valida_proc and AnoResult.valida_ano and Rede.proc_com_modal == True:
+                dados_lista = Cliente.confirmar_dados(Base.self)
+
+            elif ProcResult.valida_proc and AnoResult.valida_ano and Rede.proc_com_modal == False:
+                dados_lista = Cliente.retornar_dados(Base.self)
+            else:
+                dados_lista = ['', '']
+            if dados_lista != None:
+                valida_cliente = False if dados_lista == ['', ''] else dados_lista[0] != None and dados_lista[1] != None
+                valida_filial = False if dados_lista == ['', ''] else False if dados_lista[8] == 'Z' else True
+
+                return valida_cliente, valida_filial, dados_lista
+            else:
+                valida_cliente = False
+                valida_filial = False
+                dados_lista = ['', '']
+                return valida_cliente, valida_filial, dados_lista
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'definir_variaveis_cliente')
+        
+    valida_cliente, valida_filial, dados_lista = definir_variaveis_cliente(Base.self)
 
 
-            
+    
