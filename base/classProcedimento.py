@@ -177,7 +177,7 @@ class ProcResult:
         self.procedimento = procedimento
     
     def __repr__(self):
-        return self.ano
+        return self.procedimento
     
     def definir_variaveis_proc(self):
         try:
