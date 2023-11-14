@@ -74,7 +74,16 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'escolher_sigla_comex')
 
-
-
-            
-    
+    def escolher_ref_interna(self, tipo_comex, tipo_sigla_index):
+        try:
+            ref_interna_processo = VarGerais.ref_interna_exp if tipo_comex == 'E' else VarGerais.ref_interna_imp
+            if VarGerais.ref_filial == []:
+                ref_interna = ref_interna_processo[tipo_sigla_index]
+                return ref_interna
+            else:
+                ref_interna_imp = VarGerais.ref_interna_imp[tipo_sigla_index]
+                ref_interna_exp = VarGerais.ref_interna_exp[tipo_sigla_index]
+                ref_interna = ref_interna_imp if tipo_comex == 'I' else ref_interna_exp if tipo_comex == 'E' else ''
+                return ref_interna
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'escolher_ref_interna')
