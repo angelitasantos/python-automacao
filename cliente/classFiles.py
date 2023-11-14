@@ -97,3 +97,24 @@ class Files:
                 time.sleep(Base.time_sleep_1)
         except:
             Base.alertar_error_except(self, 'classFiles', 'abrir_excel_em_massa')            
+
+    def abrir_arquivo_capa(self, caminho, arquivo):
+        try:
+            existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, caminho, arquivo)
+
+            if existe_arquivo_capa:
+                pyautogui.hotkey('win', 'r')
+                time.sleep(Base.time_sleep_1)
+                pyperclip.copy(caminho + '\\' + arquivo)
+                Base.executar_hotkey_colar(self)
+                time.sleep(Base.time_sleep_1)
+            else:
+                mensagem = 'O arquivo deste processo não foi encontrado !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                time.sleep(Base.time_sleep_1)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'abrir_arquivo_capa')
+
+
+
+            
