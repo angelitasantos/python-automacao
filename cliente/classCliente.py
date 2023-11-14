@@ -132,3 +132,24 @@ class Cliente:
                 return lista_dados_ref
         except:
             Base.alertar_error_except(self, 'classCliente', 'retornar_dados')
+
+    def apresentar_tela_dados(self, lista_dados_ref=[]):
+        try:
+            if lista_dados_ref[8] != 'Z':
+                dados_digitados_cliente = f'Ref. {VarGerais.cliente}: {lista_dados_ref[0]}'
+                dados_digitados_empresa = f'Ref. {VarGerais.empresa}: {lista_dados_ref[1]}'
+                dados_digitados_ref = f'{dados_digitados_cliente}\n{dados_digitados_empresa}'
+                dados_digitados_tipo = f'Processo: {lista_dados_ref[2]} - {lista_dados_ref[3]}\nTipo: {lista_dados_ref[4]}'
+                modal = f'Modal: {lista_dados_ref[6]}'
+                caminho_rede = lista_dados_ref[7]
+                caminho_processo = f'Caminho Rede: {caminho_rede}'
+
+                texto = f'Confirma os dados digitados ?\n\n{dados_digitados_ref}\n\n{dados_digitados_tipo}\n{modal}\n\n{caminho_processo}'
+                titulo = 'CONFIRMA'
+                botoes = [ 'SIM', 'NÃO', 'CANCELAR' ]
+                confirma_dados = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                return confirma_dados
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'apresentar_tela_dados')
+
+    
