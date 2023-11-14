@@ -49,6 +49,21 @@ class Proc:
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_procedimento')
 
+    def escolher_subprocedimento_criar_pastas(self, procedimento):
+        cod_proc = '1' if procedimento == Proc.procedimento1 else 9
+        subproc11 = 'PROCESSO INDIVIDUAL'
+        subproc12 = 'PROCESSOS EM MASSA'
+        try:
+            if cod_proc == '1':
+                texto = 'Como deseja criar o(s) processo(s) ?'
+                titulo = 'OPÇÃO'
+                botoes = [ subproc11, subproc12, 'VOLTAR' ]
+                subproc = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                cod_subproc = cod_proc + '1' if subproc == subproc11 else cod_proc + '2' if subproc == subproc12 else 9
+                return cod_subproc
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_criar_pastas')
+
+    
 
 
-            
