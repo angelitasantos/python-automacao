@@ -91,4 +91,34 @@ class Ano:
         except:
             Base.alertar_error_except(self, 'classAno', 'escolher_ano')
 
+class AnoResult:
+
+    def __init__(self, ano):
+        self.ano = ano
+
+    def __repr__(self):
+        return self.ano
+    
+    def definir_variaveis_ano(self):
+        try:
+            if Ano.executar == 'EXECUTAR':
+                ano_atual, data_atual, ano_anterior_default = Ano.gerar_data_atual(Base.self)
+                ano_processo = Ano.escolher_ano(Base.self)
+                ano_completo = str(ano_processo)
+                ano_simples = str(ano_completo[-2:])
+                valida_ano = ano_processo != None and ano_processo != ''
+                historico_ano = 'SIM' if str(ano_processo) != str(ano_atual) else 'NÃO'
+            else:
+                ano_atual, data_atual, ano_anterior_default = Ano.gerar_data_atual(Base.self)
+                ano_processo = ano_atual
+                ano_completo = str(ano_processo)
+                ano_simples = str(ano_completo[-2:])
+                valida_ano = False
+                historico_ano = 'NÃO'
+            return valida_ano, historico_ano, ano_atual, ano_processo, ano_completo, ano_simples, data_atual
+        except:
+            Base.alertar_error_except(self, 'classAno', 'definir_variaveis_ano')
+
+    valida_ano, historico_ano, ano_atual, ano_processo, ano_completo, ano_simples, data_atual = definir_variaveis_ano(Base.self)
+
 
