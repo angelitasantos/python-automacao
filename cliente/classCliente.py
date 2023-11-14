@@ -102,3 +102,33 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'retornar_informacoes_cliente')
 
+    def retornar_dados(self):
+        try:
+            if Rede.proc_com_modal:
+                ref_cliente, ref_empresa, sigla_comex, sigla_comex_index, ref_interna = Cliente.retornar_informacoes_cliente(self)
+                lista_dados_ref =   [   
+                                        ref_cliente, ref_empresa,
+                                        RedeResult.tipo_comex,
+                                        RedeResult.tipo_comex_nome,
+                                        RedeResult.tipo_movto,
+                                        RedeResult.tipo_modal,
+                                        RedeResult.tipo_modal_nome,
+                                        RedeResult.caminho_movto,
+                                        sigla_comex, sigla_comex_index, ref_interna
+                                    ]
+                return lista_dados_ref
+            else:
+                ref_cliente = ref_empresa = sigla_comex = sigla_comex_index = ref_interna = 'Z'
+                lista_dados_ref =   [   
+                                        ref_cliente, ref_empresa,
+                                        RedeResult.tipo_comex,
+                                        RedeResult.tipo_comex_nome,
+                                        RedeResult.tipo_movto,
+                                        RedeResult.tipo_modal,
+                                        RedeResult.tipo_modal_nome,
+                                        RedeResult.caminho_movto,
+                                        sigla_comex, sigla_comex_index, ref_interna
+                                    ]
+                return lista_dados_ref
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'retornar_dados')
