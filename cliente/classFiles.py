@@ -79,6 +79,21 @@ class Files:
         except:
             Base.alertar_error_except(self, 'classFiles', 'abrir_pasta_comex')
 
-            
+    def abrir_excel_em_massa(self):
+        try:
+            existe_arquivo_em_massa, arquivo_em_massa = Base.pesquisar_existe_arquivo(Base.self, VarRede.caminho_modelo, VarRede.arquivo_em_massa)
+            caminho_em_massa = VarRede.caminho_modelo + '\\' + VarRede.arquivo_em_massa
 
-
+            if existe_arquivo_em_massa:
+                pyautogui.hotkey('win', 'r')
+                time.sleep(Base.time_sleep_1)
+                pyperclip.copy(caminho_em_massa)
+                Base.executar_hotkey_colar(self)
+                time.sleep(Base.time_sleep_1)
+            else:
+                mensagem = 'O arquivo em massa não foi encontrado !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                Files.abrir_pasta_modelo(self)   
+                time.sleep(Base.time_sleep_1)
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'abrir_excel_em_massa')            
