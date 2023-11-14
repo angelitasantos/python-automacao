@@ -11,7 +11,7 @@ class Files:
         self.arquivos = arquivos
 
     def __repr__(self):
-        return self.excel
+        return self.arquivos
     
     if CliResult.valida_cliente:
         ref_cliente = CliResult.dados_lista[0]
@@ -132,3 +132,38 @@ class Files:
             Base.fechar_powershell(self)
         except:
             Base.alertar_error_except(self, 'classFiles', 'copiar_novo_arquivo')
+
+class FilesResult:
+
+    def __init__(self, arquivos):
+        self.arquivos = arquivos
+
+    def __repr__(self):
+        return self.arquivos
+    
+    def definir_variaveis_files(self):
+        try:
+            if CliResult.valida_cliente:
+                valida_files = CliResult.valida_cliente and RedeResult.valida_rede and ProcResult.valida_proc and AnoResult.valida_ano
+                if valida_files:
+                    if CliResult.dados_lista[8] != 'Z':
+                        caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo = Files.definir_variaveis(Base.self)
+                        existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, processo_pc, capa_novo)
+                    else:
+                        caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo = Files.definir_variaveis(Base.self)
+                        existe_arquivo_capa = False
+                        arquivo_capa = 'Z'
+                else:
+                    caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo = Files.definir_variaveis(Base.self)
+                    existe_arquivo_capa = False
+                    arquivo_capa = 'Z'
+                return caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo, existe_arquivo_capa, arquivo_capa, valida_files
+            else:
+                caminho = pasta = pasta_interna = processo = processo_pc = capa_modelo = capa_novo = existe_arquivo_capa = arquivo_capa = valida_files = 'Z'
+                return caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo, existe_arquivo_capa, arquivo_capa, valida_files
+        except:
+            Base.alertar_error_except(self, 'classFiles', 'definir_variaveis_files')
+
+    caminho, pasta, pasta_interna, processo, processo_pc, capa_modelo, capa_novo, existe_arquivo_capa, arquivo_capa, valida_files = definir_variaveis_files(Base.self)
+
+
