@@ -94,6 +94,9 @@ class VarRede:
     def __init__(self, variaveis_rede):
         self.variaveis_rede = variaveis_rede
 
+    def __repr__(self):
+        return self.variaveis_rede
+
     try:
         caminho_rede = VarGerais.dir_rede + VarGerais.grupo + '\\'
         caminho_imp = 'IMPORTAÇÃO\\Clientes\\' + VarGerais.apelido + '\\'
@@ -114,6 +117,8 @@ class VarRede:
         modal_rodoviario = ExcelExterno.var_rede['C10'].value
     except:
         Base.alertar_error_except(Base.self, 'main', 'VarRede')
+
+
 
 
 
