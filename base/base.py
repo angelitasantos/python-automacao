@@ -131,4 +131,14 @@ class Base:
         arquivo = f'{ref_cliente} - {tipo_arquivo}{extensao_arquivo}'
         return arquivo
     
+    def existe_arquivo(self, caminho, arquivo):
+        caminho_arquivo = f'{caminho}\\{arquivo}'
+        existe_arquivo = os.path.exists(caminho_arquivo)
+        return existe_arquivo, arquivo
+
+    def confirmar_atualizacao(self, texto):
+        titulo = 'CONFIRMA'
+        botoes = [ 'SIM', 'NÃO' ]
+        atualiza = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+        return atualiza
 
