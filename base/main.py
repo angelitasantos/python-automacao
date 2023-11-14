@@ -89,6 +89,31 @@ class VarGerais:
     except:
         Base.alertar_error_except(Base.self, 'main', 'VarGerais')
 
+class VarRede:
+
+    def __init__(self, variaveis_rede):
+        self.variaveis_rede = variaveis_rede
+
+    try:
+        caminho_rede = VarGerais.dir_rede + VarGerais.grupo + '\\'
+        caminho_imp = 'IMPORTAÇÃO\\Clientes\\' + VarGerais.apelido + '\\'
+        caminho_exp = 'EXPORTAÇÃO\\Clientes\\' + VarGerais.cliente + '\\'
+        caminho_desembaraco = 'DESEMBARAÇO' + '\\'
+        caminho_pre_entry = 'PRE ENTRY' + '\\'
+        pasta_arquivos_modelo = 'CAPAS MODELO ' + VarGerais.cliente + '\\'
+        caminho_modelo = caminho_rede + pasta_arquivos_modelo
+
+        capa_base = ExcelExterno.var_rede['C3'].value
+        arquivo_em_massa = ExcelExterno.var_rede['C4'].value
+        modelo_capa = ExcelExterno.var_rede['C5'].value
+        modelo_em_massa = ExcelExterno.var_rede['C6'].value
+        modelo_financeiro = ExcelExterno.var_rede['C7'].value
+
+        modal_aereo = ExcelExterno.var_rede['C8'].value
+        modal_maritimo = ExcelExterno.var_rede['C9'].value
+        modal_rodoviario = ExcelExterno.var_rede['C10'].value
+    except:
+        Base.alertar_error_except(Base.self, 'main', 'VarRede')
 
 
 
