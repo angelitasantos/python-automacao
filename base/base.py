@@ -91,4 +91,14 @@ class Base:
                                     )
         return alerta
     
+    def confirmar_pyautogui(self, texto, titulo, botoes=[]):
+        confirma = pyautogui.confirm (
+                                            text = texto,
+                                            title = titulo,
+                                            buttons =   [
+                                                            item for item in botoes
+                                                        ]
+                                        )
+        return confirma
+
 
