@@ -87,3 +87,18 @@ class Cliente:
                 return ref_interna
         except:
             Base.alertar_error_except(self, 'classCliente', 'escolher_ref_interna')
+
+    def retornar_informacoes_cliente(self):
+        try:
+            sigla_comex, sigla_comex_index = Cliente.escolher_sigla_comex(self, RedeResult.tipo_comex)
+            ref_interna = Cliente.escolher_ref_interna(self, RedeResult.tipo_comex, sigla_comex_index)
+            if sigla_comex != 'Z':
+                ref_cliente = Cliente.digitar_ref_cliente(self)
+                ref_empresa = Cliente.digitar_ref_empresa(self)
+            else:
+                ref_cliente = ''
+                ref_empresa = ''
+            return ref_cliente, ref_empresa, sigla_comex, sigla_comex_index, ref_interna
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'retornar_informacoes_cliente')
+
