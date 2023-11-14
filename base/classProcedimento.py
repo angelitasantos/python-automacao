@@ -154,6 +154,21 @@ class Proc:
         except:
             Base.alertar_error_except(self, 'classProcedimento', 'escolher_subprocedimento_auditoria')
 
-
+    def escolher_codigo(self, procedimento):
+        try:
+            if procedimento == Proc.procedimento1:
+                cod_procedimento = Proc.escolher_subprocedimento_criar_pastas(self, procedimento)
+            elif procedimento == Proc.procedimento2:
+                cod_procedimento = Proc.escolher_subprocedimento_atualizar(self, procedimento)
+            elif procedimento == Proc.procedimento3:
+                cod_procedimento = Proc.escolher_subprocedimento_historico(self, procedimento)
+            elif procedimento == Proc.procedimento4:
+                cod_procedimento = Proc.escolher_subprocedimento_auditoria(self, procedimento)
+            elif procedimento == 'SAIR':
+                cod_procedimento = 0
+            
+            return cod_procedimento
+        except:
+            Base.alertar_error_except(self, 'classProcedimento', 'escolher_codigo')
 
             
