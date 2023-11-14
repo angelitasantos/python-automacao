@@ -52,3 +52,8 @@ class Base:
         pyautogui.press('enter')
         time.sleep(Base.time_sleep_1)
 
+    def executar_hotkey_copiar(self, destino, origem):
+        copiar_item = f'Copy-Item "{destino}" "{origem}"'
+        pyperclip.copy(copiar_item)
+        time.sleep(Base.time_sleep_1)
+        Base.executar_hotkey_colar(self)
