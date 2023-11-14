@@ -142,3 +142,13 @@ class Base:
         atualiza = Base.confirmar_pyautogui(self, texto, titulo, botoes)
         return atualiza
 
+    def procurar_arquivo(self, processo, lista_dados=[]):
+        elemento_encontrado = None
+        busca = processo
+        lista = lista_dados
+        for s in lista:
+            if busca in s:
+                elemento_encontrado = s
+                break
+        if elemento_encontrado:
+            return elemento_encontrado
