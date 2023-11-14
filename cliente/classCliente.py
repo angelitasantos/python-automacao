@@ -29,7 +29,17 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'digitar_ref_cliente')
 
+    def digitar_ref_empresa(self):
+        try:
+            texto = 'Digite o Número Ref. ' + VarGerais.empresa + ' ...'
+            titulo = 'INFORME'
+            padrao = ''
+            ref_empresa = Base.digitar_pyautogui(self, texto, titulo, padrao)
+            while ref_empresa == '':
+                ref_empresa = Base.digitar_pyautogui(self, texto, titulo, padrao)
+            return ref_empresa
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'digitar_ref_empresa')
 
 
-            
     
