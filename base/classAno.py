@@ -54,6 +54,21 @@ class Ano:
         except:
             Base.alertar_error_except(self, 'classAno', 'escolher_ano_anterior')
 
+    def validar_ano_anterior(self):
+        try:
+            ano_anterior, len_escolha = Ano.escolher_ano_anterior(self)
+            if ano_anterior != None:
+                while len_escolha != 4:
+                    try:
+                        mensagem = f'Você não digitou um ANO válido!\nLembre-se de escrever os quatro digítos do ANO.'
+                        Base.alertar_pyautogui(self, mensagem)
+                        ano_anterior, len_escolha = Ano.escolher_ano_anterior(self)
+                    except:
+                        Base.alertar_error_except(self, 'classAno', 'validar_ano_anterior while')
+                return ano_anterior
+        except:
+            Base.alertar_error_except(self, 'classAno', 'validar_ano_anterior')
+
 
 
 
