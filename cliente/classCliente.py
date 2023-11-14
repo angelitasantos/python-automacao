@@ -191,5 +191,29 @@ class Cliente:
         except:
             Base.alertar_error_except(self, 'classCliente', 'tentar_confirmar')
 
+    def confirmar_dados(self):
+        try:
+            lista_dados_ref = Cliente.retornar_dados(self)
+            if Rede.proc_com_modal:
+                confirma_dados_ref = Cliente.apresentar_tela_dados(self, lista_dados_ref)
+
+                if confirma_dados_ref == 'SIM':
+                    AnoResult.ano_processo = AnoResult.ano_processo
+                    ProcResult.cod_proc = ProcResult.cod_proc
+
+                elif confirma_dados_ref == 'CANCELAR':
+                    AnoResult.ano_processo = None
+                    ProcResult.cod_proc = 0
+
+                elif confirma_dados_ref == 'NÃO':
+                    confirma = confirma_dados_ref
+                    confirma_tentativa, lista_dados_tent = Cliente.tentar_confirmar(self, confirma)
+
+                dados = lista_dados_tent if confirma_dados_ref == 'NÃO' else lista_dados_ref
+                return dados
+        except:
+            Base.alertar_error_except(self, 'classCliente', 'confirmar_dados')
+
+
 
             
