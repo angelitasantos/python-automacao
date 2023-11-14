@@ -132,7 +132,7 @@ class RedeResult:
         self.rede = rede
 
     def __repr__(self):
-        return self.excel     
+        return self.rede     
 
     def definir_variaveis_rede(self):
         try:
