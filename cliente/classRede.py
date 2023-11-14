@@ -44,6 +44,26 @@ class Rede:
         except:
             Base.alertar_error_except(self, 'classRede', 'escolher_tipo_comex')
 
-
-
-
+    def escolher_tipo_movto(self, procedimento, tipo_comex):
+        try:
+            if Ano.pesquisar_tipo_processo(self) == 'completo' and ProcResult.procedimento != Proc.procedimento4:
+                if procedimento == 'SIM' and AnoResult.historico_ano == "SIM" and tipo_comex != 'E':
+                    tipo_movto = ''
+                    return tipo_movto
+                else:
+                    texto = 'Escolha uma Opção ...'
+                    titulo = 'OPÇÃO'
+                    botoes = [ 'DESEMBARAÇO', 'PRE ENTRY' ]
+                    tipo_movto_nome = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+                    tipo_movto = 'PRE ENTRY' if tipo_movto_nome == 'PRE ENTRY' else 'DESEMBARAÇO' if tipo_movto_nome == 'DESEMBARAÇO' else 'Z'
+                    return tipo_movto
+                
+            elif VarGerais.movto == 'DESEMBARAÇO':
+                tipo_movto = 'DESEMBARAÇO'
+                return tipo_movto
+            
+            elif VarGerais.movto == 'PRE_ENTRY':
+                tipo_movto = 'PRE ENTRY'
+                return tipo_movto
+        except:
+            Base.alertar_error_except(self, 'classRede', 'escolher_tipo_movto')
