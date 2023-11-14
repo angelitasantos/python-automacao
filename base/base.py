@@ -117,3 +117,8 @@ class Base:
         arquivo_funcao = f'ARQUIVO: {arquivo}.py\nCLASS/FUNÇÃO: {funcao}'
         mensagem = f'Entre em contato com o ADMINISTRADOR !!!\n\nErro na execução do\n{arquivo_funcao}'
         Base.alertar_pyautogui(self, mensagem)
+
+    def anunciar_em_construcao(self):
+        mensagem = 'Procedimento em Construção/Atualização !!!'
+        alerta_construcao = Base.alertar_pyautogui(self, mensagem)
+        return alerta_construcao
