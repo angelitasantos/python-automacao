@@ -127,3 +127,8 @@ class Base:
         existe_caminho = os.path.exists(caminho)
         return existe_caminho, caminho
     
+    def tipo_arquivo(self, ref_cliente, tipo_arquivo, extensao_arquivo):
+        arquivo = f'{ref_cliente} - {tipo_arquivo}{extensao_arquivo}'
+        return arquivo
+    
+
