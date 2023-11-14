@@ -91,5 +91,14 @@ class Rede:
         except:
             Base.alertar_error_except(self, 'classRede', 'escolher_tipo_modal')
 
+    def escolher_caminho_comex(self, tipo_comex):
+        try:
+            caminho_comex_exp = VarRede.caminho_rede + VarRede.caminho_exp
+            caminho_comex_imp = VarRede.caminho_rede + VarRede.caminho_imp
+            caminho_comex = caminho_comex_imp if tipo_comex == 'I' else caminho_comex_exp if tipo_comex == 'E' else ''
+            return caminho_comex
+        except:
+            Base.alertar_error_except(self, 'classRede', 'escolher_caminho_comex')
 
-            
+
+
