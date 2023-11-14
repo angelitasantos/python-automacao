@@ -145,5 +145,30 @@ class VarSaude:
     except:
         Base.alertar_error_except(Base.self, 'main', 'VarSaude')
 
+class VarAuditoria:
 
+    def __init__(self, variaveis_auditoria):
+        self.variaveis_auditoria = variaveis_auditoria
+    
+    def __repr__(self):
+        return self.variaveis_auditoria
 
+    try:
+        pasta_auditoria = ExcelExterno.var_auditoria['C3'].value
+        caminho_auditoria_imp = VarRede.caminho_rede + VarRede.caminho_imp + pasta_auditoria
+        if VarGerais.processo == 'importação-desembaraço':
+            caminho_auditoria_imp
+
+        porto_santos = ExcelExterno.var_auditoria['C4'].value
+        porto_seco_betim = ExcelExterno.var_auditoria['C5'].value
+        arq_aud_porto_santos = ExcelExterno.var_auditoria['C6'].value
+        arq_aud_porto_seco_betim = ExcelExterno.var_auditoria['C7'].value
+        bh_airport = ''
+        arq_aud_bh_airport = ''
+        gru_airport = ''
+        arq_aud_gru_airport = ''
+        vcp_airport = ''
+        arq_aud_vcp_airport = ''
+        cwb = ''
+    except:
+        Base.alertar_error_except(Base.self, 'main', 'VarAuditoria')
