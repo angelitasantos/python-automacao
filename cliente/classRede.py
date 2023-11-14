@@ -100,5 +100,30 @@ class Rede:
         except:
             Base.alertar_error_except(self, 'classRede', 'escolher_caminho_comex')
 
+    def escolher_caminho_movto(self, tipo_comex):
+        try:
+            caminho_comex = Rede.escolher_caminho_comex(self, tipo_comex)
+            if tipo_comex == 'Z':
+                time.sleep(Base.time_sleep_1)
 
+            elif tipo_comex == 'E':
+                tipo_movto = Rede.escolher_tipo_movto(self, ProcResult.historico_proc, tipo_comex)
+                if tipo_movto == 'PRE ENTRY':
+                    caminho_movto = caminho_comex + tipo_movto + '\\' + AnoResult.ano_completo + '\\'
+                    return caminho_comex, caminho_movto, tipo_movto
+                else:
+                    caminho_movto = caminho_comex + AnoResult.ano_completo + '\\'
+                    return caminho_comex, caminho_movto, tipo_movto
+
+            elif tipo_comex == 'I':
+                tipo_movto = Rede.escolher_tipo_movto(self, ProcResult.historico_proc, tipo_comex)
+                if ProcResult.historico_proc == 'SIM' and AnoResult.historico_ano == "SIM":
+                    caminho_movto = caminho_comex + AnoResult.ano_completo + '\\'
+                    return caminho_comex, caminho_movto, tipo_movto
+                else:
+                    caminho_movto = caminho_comex + str(AnoResult.ano_atual) + '\\' + tipo_movto + '\\'
+                    return caminho_comex, caminho_movto, tipo_movto
+        except:
+           Base.alertar_error_except(self, 'classRede', 'escolher_caminho_movto')
+           
 
