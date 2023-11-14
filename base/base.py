@@ -101,4 +101,14 @@ class Base:
                                         )
         return confirma
 
+    def digitar_pyautogui(self, texto, titulo, padrao):
+        digita = pyautogui.prompt   (   
+                                        text = texto,
+                                        title = titulo,
+                                        default = padrao
+                                    )
+        return digita
+    
+
+
 
