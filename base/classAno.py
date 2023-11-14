@@ -69,6 +69,16 @@ class Ano:
         except:
             Base.alertar_error_except(self, 'classAno', 'validar_ano_anterior')
 
+    def escolher_tipo_ano(self):
+        try:
+            texto = 'Escolha o Ano do Processo ...'
+            titulo = 'OPÇÃO'
+            botoes = [ 'ANO ATUAL', 'ANO ANTERIOR' ]
+            tipo_ano = Base.confirmar_pyautogui(self, texto, titulo, botoes)
+            return tipo_ano
+        except:
+            Base.alertar_error_except(self, 'classAno', 'escolher_tipo_ano')
+
 
 
 
