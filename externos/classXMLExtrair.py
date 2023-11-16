@@ -132,3 +132,34 @@ class XMLExtrair:
         except:
             Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_adicoes')
 
+    def extrair_dados_conhecimento(self, indice, caminho=[], arquivo=[]):
+        try:
+            caminho_xml = caminho[indice] + arquivo[indice]
+            xmldata = caminho_xml
+            prstree = ETree.parse(xmldata)
+            root = prstree.getroot()
+
+            lista_conhecimento = []
+            all_conhecimentos = []
+            cod_conhecimento = '28'
+
+            for child in root.iter('documentoInstrucaoDespacho'):
+                cod = XMLRoot.get_text(self, child, 'codigoTipoDocumentoDespacho')
+                nome = XMLRoot.get_text(self, child, 'nomeDocumentoDespacho')
+                numero = XMLRoot.get_text(self, child, 'numeroDocumentoDespacho')
+                if child.tag == 'documentoInstrucaoDespacho':
+                    for attr in child:
+                        if attr.text == cod_conhecimento:
+                            for child in child:
+                                break
+                                
+                            lista_conhecimento = numero.replace(' ', '')
+                            all_conhecimentos.append(lista_conhecimento)
+            
+            xmlToDf3 = pd.DataFrame(all_conhecimentos, columns=['Numero'])
+            conhecimentos = XMLRoot.get_replace_caracteres(self, all_conhecimentos)
+
+            return conhecimentos
+        except:
+            Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_conhecimento')
+            
