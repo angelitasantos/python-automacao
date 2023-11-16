@@ -20,7 +20,7 @@ class XMLListas:
     lista_arquivo_xml = []
     lista_sigla_pleno = []
     lista_num_pleno = []
-    lista_sigla_progress = []
+    lista_sigla_cliente = []
     lista_num_progress = []
     lista_arquivo_capa = []
     lista_capa_modelo = []
@@ -66,7 +66,7 @@ class XMLListas:
                 XMLListas.lista_arquivo_xml.append(arquivo_xml)
                 XMLListas.lista_sigla_pleno.append(SIGLAPLENO)
                 XMLListas.lista_num_pleno.append(NUMPLENO)
-                XMLListas.lista_sigla_progress.append(SIGLAPROGRESS)
+                XMLListas.lista_sigla_cliente.append(SIGLAPROGRESS)
                 XMLListas.lista_num_progress.append(NUMPROGRESS)
 
                 if REFPROGRESS is not None:
@@ -84,7 +84,7 @@ class XMLListas:
                                             XMLListas.lista_arquivo_xml,
                                             XMLListas.lista_sigla_pleno,
                                             XMLListas.lista_num_pleno,
-                                            XMLListas.lista_sigla_progress,
+                                            XMLListas.lista_sigla_cliente,
                                             XMLListas.lista_num_progress,
                                             XMLListas.lista_arquivo_capa,
                                             XMLListas.lista_capa_modelo
@@ -127,7 +127,7 @@ class XMLListasResult:
                     lista_arquivo_xml = [ xml ]
                     lista_sigla_pleno = [ CliResult.dados_lista[10] ]
                     lista_num_pleno = [ CliResult.dados_lista[1] ]
-                    lista_sigla_progress = [ sigla_progress ]
+                    lista_sigla_cliente = [ sigla_progress ]
                     lista_num_progress = [ num_progress ]
                     lista_arquivo_capa = [ arquivo_capa ]
                     lista_capa_modelo = [ FilesResult.capa_modelo ]
@@ -141,7 +141,7 @@ class XMLListasResult:
                                                     lista_arquivo_xml,
                                                     lista_sigla_pleno,
                                                     lista_num_pleno,
-                                                    lista_sigla_progress,
+                                                    lista_sigla_cliente,
                                                     lista_num_progress,
                                                     lista_arquivo_capa,
                                                     lista_capa_modelo
