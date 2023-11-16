@@ -18,10 +18,10 @@ class XMLListas:
     lista_caminho_pc = []
     lista_arquivo_txt = []
     lista_arquivo_xml = []
-    lista_sigla_pleno = []
-    lista_num_pleno = []
+    lista_sigla_empresa = []
+    lista_num_empresa = []
     lista_sigla_cliente = []
-    lista_num_progress = []
+    lista_num_cliente = []
     lista_arquivo_capa = []
     lista_capa_modelo = []
 
@@ -48,33 +48,33 @@ class XMLListas:
             qtd = sheet_obj.max_row
 
             for i in range(2, qtd + 1):
-                REFPROGRESS = sheet_obj.cell(row = i, column = 1).value
-                REFPLENO = sheet_obj.cell(row = i, column = 2).value
+                REFCLIENTE = sheet_obj.cell(row = i, column = 1).value
+                REFEMPRESA = sheet_obj.cell(row = i, column = 2).value
                 MODAL = str(sheet_obj.cell(row = i, column = 3).value)
-                NUMPROGRESS = str(sheet_obj.cell(row = i, column = 4).value)
-                SIGLAPROGRESS = str(sheet_obj.cell(row = i, column = 5).value)
-                NUMPLENO = str(sheet_obj.cell(row = i, column = 6).value)
-                SIGLAPLENO = str(sheet_obj.cell(row = i, column = 7).value)
+                NUMCLIENTE = str(sheet_obj.cell(row = i, column = 4).value)
+                SIGLACLIENTE = str(sheet_obj.cell(row = i, column = 5).value)
+                NUMEMPRESA = str(sheet_obj.cell(row = i, column = 6).value)
+                SIGLAEMPRESA = str(sheet_obj.cell(row = i, column = 7).value)
 
                 arquivo_modelo = f'{VarRede.capa_base}{MODAL} {VarGerais.apelido} - 0000.xlsx'
                 caminho_modelo = arquivo_modelo
                 XMLListas.lista_capa_modelo.append(caminho_modelo)
 
-                arquivo_txt = f'{NUMPROGRESS} - DI.txt'
+                arquivo_txt = f'{NUMCLIENTE} - DI.txt'
                 XMLListas.lista_arquivo_txt.append(arquivo_txt)
-                arquivo_xml = f'{NUMPROGRESS} - DI.xml'
+                arquivo_xml = f'{NUMCLIENTE} - DI.xml'
                 XMLListas.lista_arquivo_xml.append(arquivo_xml)
-                XMLListas.lista_sigla_pleno.append(SIGLAPLENO)
-                XMLListas.lista_num_pleno.append(NUMPLENO)
-                XMLListas.lista_sigla_cliente.append(SIGLAPROGRESS)
-                XMLListas.lista_num_progress.append(NUMPROGRESS)
+                XMLListas.lista_sigla_empresa.append(SIGLAEMPRESA)
+                XMLListas.lista_num_empresa.append(NUMEMPRESA)
+                XMLListas.lista_sigla_cliente.append(SIGLACLIENTE)
+                XMLListas.lista_num_cliente.append(NUMCLIENTE)
 
-                if REFPROGRESS is not None:
-                    arquivo_capa = f'{VarRede.capa_base}{MODAL} {VarGerais.apelido} - {SIGLAPROGRESS} - {NUMPROGRESS}.xlsx'
+                if REFCLIENTE is not None:
+                    arquivo_capa = f'{VarRede.capa_base}{MODAL} {VarGerais.apelido} - {SIGLACLIENTE} - {NUMCLIENTE}.xlsx'
                     XMLListas.lista_arquivo_capa.append(arquivo_capa)
-                    caminho = f'{diretorio}{REFPROGRESS} - {REFPLENO}\\'
+                    caminho = f'{diretorio}{REFCLIENTE} - {REFEMPRESA}\\'
                     XMLListas.lista_caminho.append(caminho)
-                    caminho_pc = f'{diretorio}{REFPROGRESS} - {REFPLENO}{subdiretorio}\\'
+                    caminho_pc = f'{diretorio}{REFCLIENTE} - {REFEMPRESA}{subdiretorio}\\'
                     XMLListas.lista_caminho_pc.append(caminho_pc)
 
             listas_caminho_em_massa =   [
@@ -82,10 +82,10 @@ class XMLListas:
                                             XMLListas.lista_caminho_pc,
                                             XMLListas.lista_arquivo_txt,
                                             XMLListas.lista_arquivo_xml,
-                                            XMLListas.lista_sigla_pleno,
-                                            XMLListas.lista_num_pleno,
+                                            XMLListas.lista_sigla_empresa,
+                                            XMLListas.lista_num_empresa,
                                             XMLListas.lista_sigla_cliente,
-                                            XMLListas.lista_num_progress,
+                                            XMLListas.lista_num_cliente,
                                             XMLListas.lista_arquivo_capa,
                                             XMLListas.lista_capa_modelo
                                         ]
@@ -118,20 +118,20 @@ class XMLListasResult:
                     xml = f'{CliResult.dados_lista[0]} - DI.xml'
                     modal = CliResult.dados_lista[6]
                     sigla_cliente = CliResult.dados_lista[8]
-                    num_progress = CliResult.dados_lista[0]
-                    arquivo_capa = f'{VarRede.capa_base}{modal} {VarGerais.apelido} - {sigla_cliente} - {num_progress}.xlsx'
+                    num_cliente = CliResult.dados_lista[0]
+                    arquivo_capa = f'{VarRede.capa_base}{modal} {VarGerais.apelido} - {sigla_cliente} - {num_cliente}.xlsx'
                     
                     lista_caminho = [ caminho_processo ]
                     lista_caminho_pc = [ caminho_processo_pc ]
                     lista_arquivo_txt = [ txt ]
                     lista_arquivo_xml = [ xml ]
-                    lista_sigla_pleno = [ CliResult.dados_lista[10] ]
-                    lista_num_pleno = [ CliResult.dados_lista[1] ]
+                    lista_sigla_empresa = [ CliResult.dados_lista[10] ]
+                    lista_num_empresa = [ CliResult.dados_lista[1] ]
                     lista_sigla_cliente = [ sigla_cliente ]
-                    lista_num_progress = [ num_progress ]
+                    lista_num_cliente = [ num_cliente ]
                     lista_arquivo_capa = [ arquivo_capa ]
                     lista_capa_modelo = [ FilesResult.capa_modelo ]
-                    lista_processos = [ num_progress ]
+                    lista_processos = [ num_cliente ]
                     qtd_processos = len(lista_processos)
 
                     listas_caminho_em_massa =   [
@@ -139,10 +139,10 @@ class XMLListasResult:
                                                     lista_caminho_pc,
                                                     lista_arquivo_txt,
                                                     lista_arquivo_xml,
-                                                    lista_sigla_pleno,
-                                                    lista_num_pleno,
+                                                    lista_sigla_empresa,
+                                                    lista_num_empresa,
                                                     lista_sigla_cliente,
-                                                    lista_num_progress,
+                                                    lista_num_cliente,
                                                     lista_arquivo_capa,
                                                     lista_capa_modelo
                                                 ]
