@@ -167,7 +167,7 @@ class XMLRoot:
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'confirmar_dados_xml')
 
-    def lista_arquivos_xml(self, lista_caminho=[], lista_caminho_pc=[], lista_arquivo_txt=[], lista_arquivo_xml=[]):
+    def listar_arquivos_xml(self, lista_caminho=[], lista_caminho_pc=[], lista_arquivo_txt=[], lista_arquivo_xml=[]):
         try:
             lista_caminho_pc_xml, lista_processo = XMLRoot.confirmar_dados_xml(self, lista_caminho, lista_caminho_pc, lista_arquivo_txt, lista_arquivo_xml)
             lista_existe_xml = []
