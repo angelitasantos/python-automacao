@@ -134,7 +134,21 @@ class Acoes:
         except:
             Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_historico')           
 
-
-
-            
-                    
+    def escolher_proc_auditoria(self, cod_procedimento):
+        try:
+            if ProcResult.valida_proc:
+                match cod_procedimento:
+                    case '41':
+                        pass
+                    case '42':
+                        pass
+                    case '43':
+                        pass
+                    case '44':
+                        pass
+                    case '45':
+                        pass
+                    case '46':
+                        pass
+        except:
+            Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_auditoria')
