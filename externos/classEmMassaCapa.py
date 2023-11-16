@@ -51,4 +51,34 @@ class EmMassaCapa:
         except:
             Base.alertar_error_except(self, 'classEmMassaCapa', 'gerar_pastas_em_massa')
 
-    
+    def criar_pastas_em_massa(self, confirma_atualizacao):
+        try:
+            existe_arquivo_em_massa, arquivo_em_massa = Base.pesquisar_existe_arquivo(Base.self, VarRede.caminho_modelo, VarRede.arquivo_em_massa)
+            caminho_arquivo_em_massa = VarRede.caminho_modelo + VarRede.arquivo_em_massa
+
+            if existe_arquivo_em_massa and confirma_atualizacao == 'SIM':
+                try:
+                    caminho_em_massa = XMLRootResult.listas_caminho_em_massa
+                    EmMassaCapa.gerar_pastas_em_massa(self, caminho_em_massa[8], caminho_em_massa[1], caminho_em_massa[9], caminho_em_massa[0])
+                    '' if RedeResult.tipo_comex == 'Z' else Files.abrir_pasta_comex(self)
+
+                    mensagem = 'Pastas Criadas !!!'
+                    Base.alertar_pyautogui(self, mensagem)
+                except:
+                    Base.alertar_error_except(self, 'classEmMassaCapa', 'criar_pastas_em_massa if')
+
+            elif not existe_arquivo_em_massa and confirma_atualizacao == 'SIM' :
+                mensagem = f'Arquivo em Massa não está salvo na pasta !!!\n\nCaminho Rede: {caminho_arquivo_em_massa} \n\nSalve-o para continuar !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                Files.abrir_pasta_modelo(self)
+
+            elif confirma_atualizacao == 'NÃO':
+                mensagem = 'Pastas não criadas !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                time.sleep(Base.time_sleep_1)
+            return confirma_atualizacao
+        except:
+            Base.alertar_error_except(self, 'classEmMassaCapa', 'criar_pastas_em_massa')
+
+
+            
