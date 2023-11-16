@@ -162,4 +162,39 @@ class XMLExtrair:
             return conhecimentos
         except:
             Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_conhecimento')
+
+    def extrair_dados_faturas(self, indice, caminho=[], arquivo=[]):
+        try:
+            caminho_xml = caminho[indice] + arquivo[indice]
+            xmldata = caminho_xml
+            prstree = ETree.parse(xmldata)
+            root = prstree.getroot()
+
+            lista_fatura = []
+            all_faturas = []
+            cod_fatura = '01'
+
+            for child in root.iter('documentoInstrucaoDespacho'):
+                cod = XMLRoot.get_text(self, child, 'codigoTipoDocumentoDespacho')
+                nome = XMLRoot.get_text(self, child, 'nomeDocumentoDespacho')
+                numero = XMLRoot.get_text(self, child, 'numeroDocumentoDespacho')
+                if child.tag == 'documentoInstrucaoDespacho':
+                    for attr in child:
+                        if attr.text == cod_fatura:
+                            for child in child:
+                                break
+                                
+                            lista_fatura = numero.replace(' ', '')
+                            all_faturas.append(lista_fatura)
+
+            xmlToDf4 = pd.DataFrame(all_faturas, columns=['Numero'])
+            qtd_faturas = len(all_faturas)
+            faturas = XMLRoot.get_replace_caracteres(self, all_faturas)
+
+            return qtd_faturas, faturas
+        except:
+            Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_faturas')
+
+
+
             
