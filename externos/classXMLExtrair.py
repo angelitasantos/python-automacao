@@ -32,7 +32,7 @@ class XMLExtrair:
                 if ProcResult.cod_proc == '23':
                     sigla_pleno = XMLRootResult.lista_sigla_pleno[indice]
                     num_pleno = XMLRootResult.lista_num_pleno[indice]
-                    sigla_progress = XMLRootResult.lista_sigla_progress[indice]
+                    sigla_progress = XMLRootResult.lista_sigla_cliente[indice]
                     num_progress = XMLRootResult.lista_num_progress[indice]
                 else:
                     sigla_pleno = CliResult.dados_lista[10]
@@ -72,4 +72,3 @@ class XMLExtrair:
             Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_gerais')
 
 
-            
