@@ -12,7 +12,7 @@ class Rede:
         self.rede = rede
 
     def __repr__(self):
-        return self.excel
+        return self.rede
 
     pastas_em_massa = 'SIM' if ProcResult.cod_proc != '12' else 'NÃO'
     arquivo_em_massa = 'SIM' if ProcResult.cod_proc != '23' else 'NÃO'
