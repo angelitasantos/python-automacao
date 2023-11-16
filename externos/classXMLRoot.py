@@ -18,7 +18,7 @@ class XMLRoot:
             existe_arquivo_txt, arquivo_di_txt = Base.pesquisar_existe_arquivo(Base.self, caminho, arquivo)
             return existe_arquivo_txt, arquivo_di_txt, caminho
         except:
-            Base.alertar_error_except(self, 'classXMLRoot', 'existe_arquivo_txt')
+            Base.alertar_error_except(self, 'classXMLRoot', 'pesquisar_existe_arquivo_txt')
 
     def listar_caminho_arquivos_txt_xml(self, lista_caminho=[], lista_caminho_pc=[], lista_arquivo_txt=[], lista_arquivo_xml=[]):
         try:
@@ -29,22 +29,22 @@ class XMLRoot:
 
             for caminho in lista_caminho:
                 index_lista_caminho = lista_caminho.index(caminho)
-                existe_txt, arquivo_txt, caminho_txt, = XMLRoot.existe_arquivo_txt(Base.self, lista_caminho[index_lista_caminho], lista_arquivo_txt[index_lista_caminho])
+                existe_txt, arquivo_txt, caminho_txt, = XMLRoot.pesquisar_existe_arquivo_txt(Base.self, lista_caminho[index_lista_caminho], lista_arquivo_txt[index_lista_caminho])
                 lista_txt = [existe_txt, arquivo_txt, caminho_txt]
                 lista_caminho_txt.append(lista_txt)
             for caminho in lista_caminho_pc:
                 index_lista_caminho = lista_caminho_pc.index(caminho)
-                existe_txt_pc, arquivo_txt_pc, caminho_pc_txt = XMLRoot.existe_arquivo_txt(Base.self, lista_caminho_pc[index_lista_caminho], lista_arquivo_txt[index_lista_caminho])
+                existe_txt_pc, arquivo_txt_pc, caminho_pc_txt = XMLRoot.pesquisar_existe_arquivo_txt(Base.self, lista_caminho_pc[index_lista_caminho], lista_arquivo_txt[index_lista_caminho])
                 lista_pc_txt = [existe_txt_pc, arquivo_txt_pc, caminho_pc_txt]
                 lista_caminho_pc_txt.append(lista_pc_txt)
             for caminho in lista_caminho:
                 index_lista_caminho = lista_caminho.index(caminho)
-                existe_arquivo_xml, arquivo_di_xml, caminho_xml = XMLRoot.existe_arquivo_txt(Base.self, lista_caminho[index_lista_caminho], lista_arquivo_xml[index_lista_caminho])
+                existe_arquivo_xml, arquivo_di_xml, caminho_xml = XMLRoot.pesquisar_existe_arquivo_txt(Base.self, lista_caminho[index_lista_caminho], lista_arquivo_xml[index_lista_caminho])
                 lista_xml = [existe_arquivo_xml, arquivo_di_xml, caminho_xml]
                 lista_caminho_xml.append(lista_xml)
             for caminho in lista_caminho_pc:
                 index_lista_caminho = lista_caminho_pc.index(caminho)
-                existe_arquivo_xml_pc, arquivo_di_pc_xml, caminho_pc_xml = XMLRoot.existe_arquivo_txt(Base.self, lista_caminho_pc[index_lista_caminho], lista_arquivo_xml[index_lista_caminho])
+                existe_arquivo_xml_pc, arquivo_di_pc_xml, caminho_pc_xml = XMLRoot.pesquisar_existe_arquivo_txt(Base.self, lista_caminho_pc[index_lista_caminho], lista_arquivo_xml[index_lista_caminho])
                 lista_pc_xml = [existe_arquivo_xml_pc, arquivo_di_pc_xml, caminho_pc_xml]
                 lista_caminho_pc_xml.append(lista_pc_xml)
             return lista_caminho_txt, lista_caminho_pc_txt, lista_caminho_xml, lista_caminho_pc_xml
