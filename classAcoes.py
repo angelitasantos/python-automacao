@@ -70,6 +70,36 @@ class Acoes:
                 EmMassaCapa.criar_pastas_em_massa(self, confirma_atualizacao)
                 mouse_listener.stop()
         except:
-            Base.alertar_error_except(self, 'classAcoes', 'abrir_proc_criar_pastas')
+            Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_criar_pastas')
 
+    def escolher_proc_atualizar_dados(self, cod_procedimento):
+        try:
+            if cod_procedimento == '21' and CliResult.valida_cliente and CliResult.valida_filial:
+                if CliResult.valida_cliente:
+                    for indice, root in enumerate(XMLRootResult.lista_processos):
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Excel.atualizar_planilha_xml(Base.self, indice, XMLRootResult.lista_arquivo_capa)
+                        mouse_listener.stop()
+
+            elif cod_procedimento == '22':
+                Saude.atualizar_planilha_saude(self)
+                Files.abrir_arquivo_capa(self, FilesResult.processo_pc, FilesResult.capa_novo)
+
+            elif cod_procedimento == '23':
+                len_root = len(Excel.lista_root)
+                len_processos = XMLRootResult.qtd_processos
+                if len_root == len_processos:
+                    if CliResult.valida_cliente:
+                        for indice, root in enumerate(XMLRootResult.lista_processos):
+                            mouse_listener = pynput.mouse.Listener(suppress = True)
+                            mouse_listener.start()
+                            Excel.atualizar_planilha_xml(Base.self, indice, XMLRootResult.lista_arquivo_capa)
+                            mouse_listener.stop()
+                else:
+                    mensagem = 'Nem todos os arquivos de DI foram encontrados.\n\nNão foi possível atualizar os processos em massa !!!'
+                    Base.alertar_pyautogui(self, mensagem)
+        except:
+            Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_atualizar_dados')        
             
+                   
