@@ -101,5 +101,40 @@ class Acoes:
                     Base.alertar_pyautogui(self, mensagem)
         except:
             Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_atualizar_dados')        
+
+    def escolher_proc_historico(self, cod_procedimento):
+        try:
+            if ProcResult.valida_proc:
+                match cod_procedimento:
+                    case '31':
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Files.abrir_pasta_processo(self, FilesResult.processo)
+                        mouse_listener.stop()
+                    case '32':
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Files.abrir_arquivo_capa(self, FilesResult.processo_pc, FilesResult.capa_novo)
+                        mouse_listener.stop()
+                    case '33':
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Files.abrir_pasta_modelo(self)
+                        mouse_listener.stop()
+                    case '34':
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Files.abrir_excel_em_massa(self)
+                        mouse_listener.stop()
+                    case '35':
+                        mouse_listener = pynput.mouse.Listener(suppress = True)
+                        mouse_listener.start()
+                        Files.abrir_pasta_comex(self)
+                        mouse_listener.stop()
+        except:
+            Base.alertar_error_except(self, 'classAcoes', 'escolher_proc_historico')           
+
+
+
             
-                   
+                    
