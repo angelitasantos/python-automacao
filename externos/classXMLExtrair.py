@@ -41,11 +41,11 @@ class XMLExtrair:
                     num_cliente = CliResult.dados_lista[0]
 
                 Numero_Len = len(Numero)
-                cnpj = Numero[0:2] + "." + Numero[2:5] + "." + Numero[5:8] + "/" + Numero[8:12] + '-' + Numero[-2:]
+                cnpj = Numero[0:2] + '.' + Numero[2:5] + '.' + Numero[5:8] + '/' + Numero[8:12] + '-' + Numero[-2:]
                 di_Len = len(numeroDI)
-                num_DI = numeroDI[0] + numeroDI[1] + "/" + numeroDI[2:9] + '-' + numeroDI[-1]
+                num_DI = numeroDI[0] + numeroDI[1] + '/' + numeroDI[2:9] + '-' + numeroDI[-1]
                 dta_Len = len(dta)
-                num_DTA = dta[0] + dta[1] + "/" + dta[2:9] + '-' + dta[-1]
+                num_DTA = dta[0] + dta[1] + '/' + dta[2:9] + '-' + dta[-1]
                 modal = viaTransporteNome
                 seq_retif = sequencialRetificacao
                 conf_retif = 'Sim' if seq_retif != '00' else 'Não'
@@ -71,4 +71,64 @@ class XMLExtrair:
         except:
             Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_gerais')
 
+    def extrair_dados_adicoes(self, indice, caminho=[], arquivo=[]):
+        try:
+            adicoes = []
+            caminho_xml = caminho[indice] + arquivo[indice]
+            arquivos = [caminho_xml]
+            for arquivo in arquivos:
+                prstree = ETree.parse(arquivo)
+                root = prstree.getroot()
+
+                regimes = []
+                exportadores = []
+                cod_fund_legais = []
+                fund_legais = []
+                todas_LI = []
+                
+                for child in root.iter('adicao'):
+                    numDI = XMLRoot.get_text(self, child, 'numeroDI')
+                    numeroLI = XMLRoot.get_text(self, child, 'numeroLI')
+                    adicao = XMLRoot.get_text(self, child, 'numeroAdicao')
+                    atipico = XMLRoot.get_text(self, child, 'iiRegimeTributacaoNome')
+                    exportador = XMLRoot.get_text(self, child, 'fornecedorNome')
+                    cod_fund_legal = XMLRoot.get_text(self, child, 'iiFundamentoLegalCodigo')
+                    fund_legal_existe = []
+                    for infoss in root.iterfind('declaracaoImportacao/adicao/iiFundamentoLegalNome'):
+                        fund_legal_existe.append(infoss.text)
+                    fund_legal = 'SEM FUNDAMENTO LEGAL' if fund_legal_existe == [] else XMLRoot.get_text(self, child, 'iiFundamentoLegalNome')
+
+                    li_Len = len(numeroLI)
+                    num_LI = numeroLI[0] + numeroLI[1] + '/' + numeroLI[2:9] + '-' + numeroLI[-1]
+                
+                    regimes.append(atipico)
+                    exportadores.append(exportador)
+                    cod_fund_legais.append(cod_fund_legal)
+                    fund_legais.append(fund_legal)
+                    todas_LI.append(num_LI)   
+
+                qtd_regime, lista_regime, boolean = XMLRoot.get_lista(self, regimes)
+                qtd_exp, lista_exp, boolean = XMLRoot.get_lista(self, exportadores)
+                qtd_Tot_LI, lista_LI, boolean_LI = XMLRoot.get_lista(self, todas_LI)
+                qtd_cod_fund_legal, lista_cod_fund_legal, boolean = XMLRoot.get_lista(self, cod_fund_legais)
+                qtd_fund_legal, lista_fund_legal, boolean = XMLRoot.get_lista(self, fund_legais)
+
+                trib_atipica = 'Sim' if 'SUSPENSAO' in lista_regime else 'Não'
+                drawback = 'Sim' if '16' in lista_cod_fund_legal else 'Não'
+                
+            dados_adicoes =  [   
+                                qtd_exp,
+                                lista_exp,
+                                qtd_Tot_LI,
+                                lista_LI,
+                                boolean_LI,
+                                trib_atipica,
+                                lista_cod_fund_legal,
+                                qtd_fund_legal,
+                                lista_fund_legal,
+                                drawback
+                            ]
+            return dados_adicoes
+        except:
+            Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_adicoes')
 
