@@ -81,4 +81,29 @@ class XMLRoot:
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'listar_arquivo_xml_ausente')
 
-            
+    def listar_arquivo_txt_xml_existentes(self, lista_caminho_txt=[], lista_caminho_pc_txt=[], lista_caminho_xml=[]):
+        try:
+            lista_processo_txt = []
+            lista_processo_pc_txt  = []
+            lista_processo_xml = []
+            for caminho in lista_caminho_txt:
+                for indice, dados in enumerate(caminho):
+                    if indice == 0:
+                        existe_arquivo_xml_pc = caminho[indice]
+                        if existe_arquivo_xml_pc == True:
+                            lista_processo_txt.append(caminho[1])
+            for caminho in lista_caminho_pc_txt:
+                for indice, dados in enumerate(caminho):
+                    if indice == 0:
+                        existe_arquivo_xml_pc = caminho[indice]
+                        if existe_arquivo_xml_pc == True:
+                            lista_processo_pc_txt.append(caminho[1])
+            for caminho in lista_caminho_xml:
+                for indice, dados in enumerate(caminho):
+                    if indice == 0:
+                        existe_arquivo_xml_pc = caminho[indice]
+                        if existe_arquivo_xml_pc == True:
+                            lista_processo_xml.append(caminho[1])
+            return lista_processo_txt, lista_processo_pc_txt, lista_processo_xml
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'listar_arquivo_txt_existentes')
