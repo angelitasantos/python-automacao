@@ -232,4 +232,38 @@ class XMLRoot:
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'get_lista')
 
-            
+class XMLRootResult:
+
+    def __init__(self, xml):
+        self.xml = xml
+
+    def __repr__(self):
+        return self.xml
+    
+    try:
+        listas_caminho_em_massa, qtd_processos, lista_processos = XMLListasResult.definir_listas_caminho_em_massa(Base.self)
+        if ProcResult.cod_proc == '11' or ProcResult.cod_proc == '21' or ProcResult.cod_proc == '12' or ProcResult.cod_proc == '23':
+            lista_caminho = listas_caminho_em_massa[0]
+            lista_caminho_pc = listas_caminho_em_massa[1]
+            lista_arquivo_txt = listas_caminho_em_massa[2]
+            lista_arquivo_xml = listas_caminho_em_massa[3]
+            lista_sigla_pleno = listas_caminho_em_massa[4]
+            lista_num_pleno = listas_caminho_em_massa[5]
+            lista_sigla_progress = listas_caminho_em_massa[6]
+            lista_num_progress = listas_caminho_em_massa[7]
+            lista_arquivo_capa = listas_caminho_em_massa[8]
+            lista_capa_modelo = listas_caminho_em_massa[9]
+        else:
+            lista_caminho = [ 'Z' ]
+            lista_caminho_pc = [ 'Z' ]
+            lista_arquivo_txt = [ 'Z' ]
+            lista_arquivo_xml = [ 'Z' ]
+            lista_sigla_pleno = [ 'Z' ]
+            lista_num_pleno = [ 'Z' ]
+            lista_sigla_progress = [ 'Z' ]
+            lista_num_progress = [ 'Z' ]
+            lista_arquivo_capa = [ 'Z' ]
+            lista_capa_modelo = [ 'Z' ]
+    except:
+        Base.alertar_error_except(Base.self, 'classXMLRoot', 'XMLResult')
+
