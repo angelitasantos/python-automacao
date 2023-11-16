@@ -110,13 +110,11 @@ class EmpresaResult:
             if cria_caminho != None and cria_caminho == True:
                 caminho = VarGerais.dir_rede + VarGerais.empresa
                 existe_caminho, caminho = Base.pesquisar_existe_caminho_rede(self, caminho)
-
                 if cria_caminho and not existe_caminho:
                     texto = 'Deseja criar as pastas para o cliente ?'
                     titulo = 'CONFIRMA'
                     botoes = [ 'SIM', 'NÃO' ]
                     cria_pastas = Base.confirmar_pyautogui(self, texto, titulo, botoes)
-
                     if cria_pastas == 'SIM':
                         texto = 'Digite o caminho dos arquivos de modelo ...'
                         caminho_modelo = f'{Base.digitar_pyautogui(self, texto, "INFORME", "")}\\'
@@ -132,13 +130,20 @@ class EmpresaResult:
                             Base.alertar_finalizado(self)
                             executar = 'EXECUTAR'
                             return executar
-                        
                         else:
                             executar = 'CANCELAR'
                             return executar
-                
+                    else:
+                            executar = 'CANCELAR'
+                            return executar
+                else:
+                    executar = 'EXECUTAR'
+                    return executar
             else:
                 executar = 'EXECUTAR'
                 return executar
         except:
             Base.alertar_error_except(self, 'classNovaEmpresa', 'criar_novas_pastas_arquivos')
+
+
+
