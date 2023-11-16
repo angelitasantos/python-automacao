@@ -109,6 +109,31 @@ class Saude:
         except:
             Base.alertar_error_except(self, 'classSaude', 'coletar_dados_filtrados')
 
+    def atualizar_planilha_saude(self):
+        try:
+            existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, FilesResult.processo_pc, FilesResult.capa_novo)
+
+            if existe_arquivo_capa:
+                while VarGerais.tentativas <= VarGerais.total_tentativas:
+                    try:
+                        Saude.coletar_dados_filtrados(self)
+                        if VarGerais.tentativas == VarGerais.total_tentativas:
+                            mensagem = 'Planilha Atualizada !!!'
+                            Base.alertar_pyautogui(self, mensagem)
+                    except:
+                        tentativas_validas = VarGerais.total_tentativas - VarGerais.tentativas
+                        mensagem = f'Planilha aberta !!!\nVocê tem {tentativas_validas} tentativa(s) para fechá-la!!!\nA planilha não foi atualizada !!!'
+                        Base.alertar_pyautogui(self, mensagem)
+                    time.sleep(1)
+                    VarGerais.tentativas += 1
+            
+            elif not existe_arquivo_capa:
+                mensagem = 'Arquivos não estão salvos na pasta PC do processo !!!'
+                Base.alertar_pyautogui(self, mensagem)
+                time.sleep(Base.time_sleep_1)
+        except:
+            Base.alertar_error_except(self, 'classSaude', 'atualizar_planilha_saude')
+
 
 
 
