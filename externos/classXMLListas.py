@@ -117,9 +117,9 @@ class XMLListasResult:
                     txt = f'{CliResult.dados_lista[0]} - DI.txt'
                     xml = f'{CliResult.dados_lista[0]} - DI.xml'
                     modal = CliResult.dados_lista[6]
-                    sigla_progress = CliResult.dados_lista[8]
+                    sigla_cliente = CliResult.dados_lista[8]
                     num_progress = CliResult.dados_lista[0]
-                    arquivo_capa = f'{VarRede.capa_base}{modal} {VarGerais.apelido} - {sigla_progress} - {num_progress}.xlsx'
+                    arquivo_capa = f'{VarRede.capa_base}{modal} {VarGerais.apelido} - {sigla_cliente} - {num_progress}.xlsx'
                     
                     lista_caminho = [ caminho_processo ]
                     lista_caminho_pc = [ caminho_processo_pc ]
@@ -127,7 +127,7 @@ class XMLListasResult:
                     lista_arquivo_xml = [ xml ]
                     lista_sigla_pleno = [ CliResult.dados_lista[10] ]
                     lista_num_pleno = [ CliResult.dados_lista[1] ]
-                    lista_sigla_cliente = [ sigla_progress ]
+                    lista_sigla_cliente = [ sigla_cliente ]
                     lista_num_progress = [ num_progress ]
                     lista_arquivo_capa = [ arquivo_capa ]
                     lista_capa_modelo = [ FilesResult.capa_modelo ]
