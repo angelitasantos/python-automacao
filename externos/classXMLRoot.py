@@ -107,3 +107,54 @@ class XMLRoot:
             return lista_processo_txt, lista_processo_pc_txt, lista_processo_xml
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'listar_arquivo_txt_existentes')
+
+    def trocar_txt_xml(self, ref_cliente=[], lista_processo_txt=[], lista_processo_pc_txt=[], lista_processo_xml=[], lista_arquivo_di_xml=[], lista_pasta_destino=[], lista_pasta_origem=[]):
+        try:
+            processo_txt = Base.procurar_arquivo(self, ref_cliente, lista_processo_txt)
+            processo_pc_txt = Base.procurar_arquivo(self, ref_cliente, lista_processo_pc_txt)
+            processo_xml = Base.procurar_arquivo(self, ref_cliente, lista_processo_xml)
+            processo_pc_xml = Base.procurar_arquivo(self, ref_cliente, lista_arquivo_di_xml)
+            pasta_destino = Base.procurar_arquivo(self, ref_cliente, lista_pasta_destino)
+            pasta_origem = Base.procurar_arquivo(self, ref_cliente, lista_pasta_origem)
+            pasta_origem_f = f'{pasta_origem}{processo_pc_xml}'
+            pasta_destino_f = f'{pasta_destino}{processo_pc_xml}'
+
+            if processo_xml != None and processo_pc_xml != None:
+                Base.abrir_powershell(self)
+                time.sleep(Base.time_sleep_1)
+                move_pastas = f'move "{pasta_origem_f}" "{pasta_destino_f}"'
+                pyperclip.copy(move_pastas)
+                time.sleep(Base.time_sleep_1)
+                Base.executar_hotkey_colar(self)
+                Base.fechar_powershell(self)
+            elif processo_txt != None and processo_pc_xml != None:
+                Base.abrir_powershell(self)
+                time.sleep(Base.time_sleep_1)
+                rename_item = f'Rename-Item "{pasta_origem}{processo_txt}" "{pasta_origem}{processo_pc_xml}"'
+                pyperclip.copy(rename_item)
+                time.sleep(Base.time_sleep_1)
+                Base.executar_hotkey_colar(self)
+                move_pastas = f'move "{pasta_origem_f}" "{pasta_destino_f}"'
+                pyperclip.copy(move_pastas)
+                time.sleep(Base.time_sleep_1)
+                Base.executar_hotkey_colar(self)
+                Base.fechar_powershell(self)
+                return processo_pc_xml
+            elif processo_pc_txt != None and processo_pc_xml != None:
+                Base.abrir_powershell(self)
+                time.sleep(Base.time_sleep_1)
+                rename_item = f'Rename-Item "{pasta_destino}{processo_pc_txt}" "{pasta_destino}{processo_pc_xml}"'
+                pyperclip.copy(rename_item)
+                time.sleep(Base.time_sleep_1)
+                Base.executar_hotkey_colar(self)
+                Base.fechar_powershell(self)
+                return processo_pc_xml
+            else:
+                return processo_pc_xml
+                    
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'trocar_txt_xml')
+
+
+
+            
