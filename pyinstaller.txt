@@ -15,5 +15,5 @@ pip install pyinstaller pyautogui elementpath pandas openpyxl pynput
 criar o executável
 pyinstaller --onefile -w automacao.py
 
-deletar a pasta build e o arquivo progress.spec
+deletar a pasta build e o arquivo automacao.spec
 o executável estará dentro da pasta dist
