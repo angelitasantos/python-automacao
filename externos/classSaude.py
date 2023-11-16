@@ -134,6 +134,11 @@ class Saude:
         except:
             Base.alertar_error_except(self, 'classSaude', 'atualizar_planilha_saude')
 
+class SaudeResult:
 
+    def __init__(self, financeiro):
+        self.financeiro = financeiro      
 
+    def __repr__(self):
+        return self.financeiro
 
