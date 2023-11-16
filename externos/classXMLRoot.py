@@ -186,7 +186,7 @@ class XMLRoot:
                 lista_root.append(root)
             return lista_root
         except:
-            Base.alertar_error_except(self, 'classXMLRoot', 'lista_arquivos_xml')
+            Base.alertar_error_except(self, 'classXMLRoot', 'listar_arquivos_xml')
 
     def get_text(self, node, nome, valor_default = ''):
         try:
