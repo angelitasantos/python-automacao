@@ -195,6 +195,31 @@ class XMLExtrair:
         except:
             Base.alertar_error_except(self, 'classXMLExtrair', 'extrair_dados_faturas')
 
+class XMLExtResult:
 
+    def __init__(self, xml):
+        self.xml = xml    
+
+    def __repr__(self):
+        return self.xml
+    
+    def definir_variaveis_extrair_xml(self):
+        try:
+            if CliResult.valida_cliente:
+                if ProcResult.cod_proc == '11' or ProcResult.cod_proc == '12' or ProcResult.cod_proc == '21' or ProcResult.cod_proc == '23':
+                    mouse_listener = pynput.mouse.Listener(suppress = True)
+                    mouse_listener.start()
+                    lista_root = XMLRoot.lista_arquivos_xml(Base.self, XMLRootResult.lista_caminho, XMLRootResult.lista_caminho_pc, XMLRootResult.lista_arquivo_txt, XMLRootResult.lista_arquivo_xml)     
+                    lista_root = XMLRoot.lista_arquivos_xml(Base.self, XMLRootResult.lista_caminho, XMLRootResult.lista_caminho_pc, XMLRootResult.lista_arquivo_txt, XMLRootResult.lista_arquivo_xml)
+                    mouse_listener.stop()
+                else:
+                    lista_root = []
+            else:
+                lista_root = []
+            if lista_root == []:
+                lista_root = [ 'Z' ]
+            return lista_root
+        except:
+            Base.alertar_error_except(self, 'classXMLExtrair', 'definir_variaveis_extrair_xml')
 
             
