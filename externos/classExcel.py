@@ -112,3 +112,28 @@ class Excel:
 
         elif existe_arquivo_capa and existe_arquivo_xml:
             return True
+
+    def atualizar_planilha_xml(self, indice, arquivo=[]):
+        try:
+            existe_arquivos = Excel.existe_arquivos_capa_xml(self, indice, XMLRootResult.lista_caminho_pc, XMLRootResult.lista_arquivo_capa, XMLRootResult.lista_arquivo_xml)
+            if existe_arquivos:
+                while VarGerais.tentativas <= VarGerais.total_tentativas:
+                    try:
+                        if CliResult.valida_cliente:
+                            lista_caminho_pc = XMLRootResult.lista_caminho_pc
+                            for indice, root in enumerate(XMLRootResult.lista_processos):
+                                if root not in lista_caminho_pc:
+                                    Excel.atualizar_dados_planilha(Base.self, indice, lista_caminho_pc, XMLRootResult.lista_arquivo_capa)
+                                    lista_caminho_pc.append(root)
+                                    mensagem = f'Planilha:\n\n{arquivo[indice]}\n\nAtualizada com Sucesso !!!'
+                                    Base.alertar_pyautogui(self, mensagem)
+                    except:
+                        tentativas_validas = VarGerais.total_tentativas - VarGerais.tentativas
+                        mensagem = f'Planilha aberta !!!\nVocê tem {tentativas_validas} tentativa(s) para fechá-la!!!\nA planilha não foi atualizada !!!'
+                        Base.alertar_pyautogui(self, mensagem)
+                    time.sleep(1)
+                    VarGerais.tentativas += 1            
+        except:
+            Base.alertar_error_except(self, 'classExcel', 'atualizar_planilha_xml')
+
+
