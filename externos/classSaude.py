@@ -71,5 +71,29 @@ class Saude:
         except:
             Base.alertar_error_except(self, 'classSaude', 'extrair_dados_saude')
 
+    def criar_aba_saude(self, wb_obj, arquivo_excel):
+        try:
+            wb_obj.create_sheet(index = 1 , title = 'SAUDE')
+            sheet_obj = wb_obj['SAUDE']
+            
+            sheet_obj['A1'] = 'Banco'
+            sheet_obj['B1'] = 'Data'
+            sheet_obj['C1'] = 'Credito'
+            sheet_obj['D1'] = 'Debito'
+            sheet_obj['E1'] = 'Despesas'
+            sheet_obj['F1'] = 'AR'
+            sheet_obj['G1'] = 'Tipo'
+            sheet_obj['H1'] = 'Numero'
+            sheet_obj['I1'] = 'NF'
 
-                
+            data = Saude.extrair_dados_saude(self)
+            for i in data:
+                sheet_obj.append(i)
+            
+            wb_obj.save(arquivo_excel)
+        except:
+            Base.alertar_error_except(self, 'classSaude', 'criar_aba_saude')
+
+
+
+
