@@ -207,4 +207,29 @@ class XMLRoot:
             return lista_exportar
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'get_replace_caracteres')
+    
+    def get_lista(self, lista_dados):
+        try:
+            valores = []
+            repetidos = set()
+
+            for dado in lista_dados:
+                if dado not in valores:
+                    valores.append(dado)
+                else:
+                    repetidos.add(dado)
+
+            if '00/0000000-0' in valores:
+                valores.remove('00/0000000-0')
+            qtd = len(valores)
+            boolean_LI = 'Não' if qtd == 0 else 'LI'
+
+            lista_exportar = str(valores).replace("',", ' - ')
+            for caractere in "!@#$%*()<>:|/?[]'":
+                lista_exportar = lista_exportar.replace(caractere, "")
+            lista_exportar = lista_exportar
+            return qtd, lista_exportar, boolean_LI
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'get_lista')
+
             
