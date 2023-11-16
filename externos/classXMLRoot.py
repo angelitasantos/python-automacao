@@ -197,4 +197,14 @@ class XMLRoot:
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'get_text')
     #https://pt.stackoverflow.com/questions/478761/attributeerror-nonetype-object-has-no-attribute-text
-    
+
+    def get_replace_caracteres(self, valores):
+        try:
+            lista_exportar = str(valores).replace("',", ' - ')
+            for caractere in "!@#$%*()<>:|/?[]'":
+                lista_exportar = lista_exportar.replace(caractere, "")
+            lista_exportar = lista_exportar
+            return lista_exportar
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'get_replace_caracteres')
+            
