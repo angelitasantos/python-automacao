@@ -155,5 +155,15 @@ class XMLRoot:
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'trocar_txt_xml')
 
+    def confirmar_dados_xml(self, lista_caminho=[], lista_caminho_pc=[], lista_arquivo_txt=[], lista_arquivo_xml=[]):
+        try:
+            lista_caminho_txt, lista_caminho_pc_txt, lista_caminho_xml, lista_caminho_pc_xml = XMLRoot.listar_caminho_arquivos_txt_xml(Base.self, lista_caminho, lista_caminho_pc, lista_arquivo_txt, lista_arquivo_xml)
+            lista_arquivo_di_xml, lista_pasta_origem, lista_pasta_destino, lista_processo = XMLRoot.listar_arquivo_xml_ausente(Base.self, lista_caminho_pc_xml)
+            lista_processo_txt, lista_processo_pc_txt, lista_processo_xml = XMLRoot.listar_arquivo_txt_xml_existentes(Base.self, lista_caminho_txt, lista_caminho_pc_txt, lista_caminho_xml)
 
+            for processo in lista_processo:
+                executar = XMLRoot.trocar_txt_xml(Base.self, processo, lista_processo_txt, lista_processo_pc_txt, lista_processo_xml, lista_arquivo_di_xml, lista_pasta_destino, lista_pasta_origem)
+            return lista_caminho_pc_xml, lista_processo
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'confirmar_dados_xml')
 
