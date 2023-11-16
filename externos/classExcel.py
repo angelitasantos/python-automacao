@@ -100,5 +100,15 @@ class Excel:
         except:
             Base.alertar_error_except(self, 'classExcel', 'confirma_atualizacao_capa')
 
+    def existe_arquivos_capa_xml(self, indice, caminho=[], arquivo=[], arquivo_xml=[]):
+        existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, caminho[indice], arquivo[indice])
+        existe_arquivo_xml, caminho_arquivo_xml = Base.pesquisar_existe_arquivo(Base.self, caminho[indice], arquivo_xml[indice])
 
+        if not existe_arquivo_capa or not existe_arquivo_xml:
+            mensagem = f'Arquivos:\n\n{arquivo_capa}\n\ne/ou\n\n{caminho_arquivo_xml}\n\nNão encontrados. Processo não atualizado !!!'
+            Base.alertar_pyautogui(self, mensagem)
+            time.sleep(Base.time_sleep_1)
+            return False
 
+        elif existe_arquivo_capa and existe_arquivo_xml:
+            return True
