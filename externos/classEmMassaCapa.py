@@ -80,5 +80,15 @@ class EmMassaCapa:
         except:
             Base.alertar_error_except(self, 'classEmMassaCapa', 'criar_pastas_em_massa')
 
+class EmMassaCapaResult:
 
-            
+    def __init__(self, arquivos):
+        self.arquivos = arquivos
+
+    def __repr__(self):
+        return self.arquivos
+
+    valida_em_massa = RedeResult.tipo_comex != 'Z' and ProcResult.valida_proc and ProcResult.cod_proc == '12'
+
+
+
