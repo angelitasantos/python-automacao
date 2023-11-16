@@ -30,15 +30,15 @@ class XMLExtrair:
                 data_atual = AnoResult.data_atual
 
                 if ProcResult.cod_proc == '23':
-                    sigla_pleno = XMLRootResult.lista_sigla_pleno[indice]
-                    num_pleno = XMLRootResult.lista_num_pleno[indice]
+                    sigla_empresa = XMLRootResult.lista_sigla_empresa[indice]
+                    num_empresa = XMLRootResult.lista_num_empresa[indice]
                     sigla_cliente = XMLRootResult.lista_sigla_cliente[indice]
-                    num_progress = XMLRootResult.lista_num_progress[indice]
+                    num_cliente = XMLRootResult.lista_num_cliente[indice]
                 else:
-                    sigla_pleno = CliResult.dados_lista[10]
-                    num_pleno = CliResult.dados_lista[1]
+                    sigla_empresa = CliResult.dados_lista[10]
+                    num_empresa = CliResult.dados_lista[1]
                     sigla_cliente = CliResult.dados_lista[8]
-                    num_progress = CliResult.dados_lista[0]
+                    num_cliente = CliResult.dados_lista[0]
 
                 Numero_Len = len(Numero)
                 cnpj = Numero[0:2] + "." + Numero[2:5] + "." + Numero[5:8] + "/" + Numero[8:12] + '-' + Numero[-2:]
@@ -56,10 +56,10 @@ class XMLExtrair:
                                 imp_uf,
                                 imp_nome,
                                 AnoResult.ano_completo,
-                                sigla_pleno,
-                                num_pleno,
+                                sigla_empresa,
+                                num_empresa,
                                 sigla_cliente,
-                                num_progress,
+                                num_cliente,
                                 modal,
                                 seq_retif,
                                 num_DI,
