@@ -187,3 +187,14 @@ class XMLRoot:
             return lista_root
         except:
             Base.alertar_error_except(self, 'classXMLRoot', 'lista_arquivos_xml')
+
+    def get_text(self, node, nome, valor_default = ''):
+        try:
+            campo = node.find(nome)
+            if campo is None:
+                return valor_default
+            return campo.text
+        except:
+            Base.alertar_error_except(self, 'classXMLRoot', 'get_text')
+    #https://pt.stackoverflow.com/questions/478761/attributeerror-nonetype-object-has-no-attribute-text
+    
