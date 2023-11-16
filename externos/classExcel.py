@@ -85,5 +85,20 @@ class Excel:
         except:
             Base.alertar_error_except(self, 'classExcel', 'atualizar_dados_planilha')
 
+    def confirma_atualizacao_capa(self):
+        try:
+            if ProcResult.cod_proc == '21':
+                texto = 'Confirma a atualização dos dados da DI(xml) na planilha ?'
+                confirma_atualizacao = Base.confirmar_atualizacao(self, texto)
+            elif ProcResult.cod_proc == '22':
+                texto = 'Confirma a atualização dos dados da SAUDE na planilha ?'
+                confirma_atualizacao = Base.confirmar_atualizacao(self, texto)
+            elif ProcResult.cod_proc == '23':
+                texto = 'Confirma a atualização dos dados EM MASSA das DIs(xml) ?'
+                confirma_atualizacao = Base.confirmar_atualizacao(self, texto)
+            return confirma_atualizacao
+        except:
+            Base.alertar_error_except(self, 'classExcel', 'confirma_atualizacao_capa')
+
 
 
