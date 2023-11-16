@@ -94,6 +94,21 @@ class Saude:
         except:
             Base.alertar_error_except(self, 'classSaude', 'criar_aba_saude')
 
+    def coletar_dados_filtrados(self):
+        try:
+            existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, FilesResult.processo_pc, FilesResult.capa_novo)
+            caminho_capa = FilesResult.processo_pc + '\\' + arquivo_capa
+            wb_obj = openpyxl.load_workbook(caminho_capa)
+            sheetnames = wb_obj.sheetnames
+
+            if 'SAUDE' in sheetnames:
+                wb_obj.remove(wb_obj['SAUDE'])
+                Saude.criar_aba_saude(self, wb_obj, caminho_capa)
+            else:
+                Saude.criar_aba_saude(self, wb_obj, caminho_capa)
+        except:
+            Base.alertar_error_except(self, 'classSaude', 'coletar_dados_filtrados')
+
 
 
 
