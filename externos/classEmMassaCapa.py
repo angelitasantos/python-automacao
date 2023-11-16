@@ -34,7 +34,21 @@ class EmMassaCapa:
         except:
             Base.alertar_error_except(self, 'classEmMassaCapa', 'renomear_pasta')
 
+    def gerar_pastas_em_massa(self, lista_arquivo_capa=[], lista_caminho_pc=[], lista_capa_modelo=[], lista_caminho=[]):
+        try:            
+            for indice, dados in enumerate(lista_arquivo_capa):
+                existe_arquivo_capa, arquivo_capa = Base.pesquisar_existe_arquivo(Base.self, lista_caminho_pc[indice], lista_arquivo_capa[indice])
+                caminho_modelo = VarRede.caminho_modelo + lista_capa_modelo[indice]
+                if existe_arquivo_capa == False:
+                    if not os.path.exists(lista_caminho_pc[indice]):
+                        os.makedirs(lista_caminho_pc[indice])
+                        EmMassaCapa.renomear_pasta(self, caminho_modelo, lista_caminho_pc[indice], lista_capa_modelo[indice], lista_arquivo_capa[indice])
+                    elif os.path.exists(lista_caminho_pc[indice]):
+                        EmMassaCapa.renomear_pasta(self, caminho_modelo, lista_caminho_pc[indice], lista_capa_modelo[indice], lista_arquivo_capa[indice])
+                    elif os.path.exists(lista_caminho):
+                        os.makedirs(lista_caminho_pc[indice])
+                        EmMassaCapa.renomear_pasta(self, caminho_modelo, lista_caminho_pc[indice], lista_capa_modelo[indice], lista_arquivo_capa[indice])
+        except:
+            Base.alertar_error_except(self, 'classEmMassaCapa', 'gerar_pastas_em_massa')
 
-
-
-            
+    
