@@ -125,11 +125,11 @@ class Excel:
                                 if root not in lista_caminho_pc:
                                     Excel.atualizar_dados_planilha(Base.self, indice, lista_caminho_pc, XMLRootResult.lista_arquivo_capa)
                                     lista_caminho_pc.append(root)
-                                    mensagem = f'Planilha:\n\n{arquivo[indice]}\n\nAtualizada com Sucesso !!!'
+                                    mensagem = f'PLANILHA:\n\n{arquivo[indice]}\n\nATUALIZADA COM SUCESSO !!!'
                                     Base.alertar_pyautogui(self, mensagem)
                     except:
                         tentativas_validas = VarGerais.total_tentativas - VarGerais.tentativas
-                        mensagem = f'Planilha aberta !!!\nVocê tem {tentativas_validas} tentativa(s) para fechá-la!!!\nA planilha não foi atualizada !!!'
+                        mensagem = f'PLANILHA ABERTA !!!\nVocê tem {tentativas_validas} tentativa(s) para fechá-la!!!\nA planilha não foi atualizada !!!'
                         Base.alertar_pyautogui(self, mensagem)
                     time.sleep(1)
                     VarGerais.tentativas += 1            

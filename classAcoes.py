@@ -27,7 +27,7 @@ class Acoes:
                         Acoes.escolher_proc_atualizar_dados(self, cod_procedimento)
                         Base.alertar_finalizado(self)
                     elif confirma_atualizacao == 'NÃO':
-                        mensagem = 'Planilha Não Atualizada !!!'
+                        mensagem = 'PLANILHA NÃO ATUALIZADA !!!'
                         Base.alertar_pyautogui(self, mensagem)
                         time.sleep(Base.time_sleep_1)
 

@@ -119,7 +119,7 @@ class Base:
         Base.alertar_pyautogui(self, mensagem)
 
     def anunciar_em_construcao(self):
-        mensagem = 'Procedimento em Construção/Atualização !!!'
+        mensagem = 'PROCEDIMENTO EM CONSTRUÇÃO / ATUALIZAÇÃO !!!'
         alerta_construcao = Base.alertar_pyautogui(self, mensagem)
         return alerta_construcao
 

@@ -62,7 +62,7 @@ class EmMassaCapa:
                     EmMassaCapa.gerar_pastas_em_massa(self, caminho_em_massa[8], caminho_em_massa[1], caminho_em_massa[9], caminho_em_massa[0])
                     '' if RedeResult.tipo_comex == 'Z' else Files.abrir_pasta_comex(self)
 
-                    mensagem = 'Pastas Criadas !!!'
+                    mensagem = 'PASTAS CRIADAS !!!'
                     Base.alertar_pyautogui(self, mensagem)
                 except:
                     Base.alertar_error_except(self, 'classEmMassaCapa', 'criar_pastas_em_massa if')
@@ -73,7 +73,7 @@ class EmMassaCapa:
                 Files.abrir_pasta_modelo(self)
 
             elif confirma_atualizacao == 'NÃO':
-                mensagem = 'Pastas não criadas !!!'
+                mensagem = 'PASTAS NÃO CRIADAS !!!'
                 Base.alertar_pyautogui(self, mensagem)
                 time.sleep(Base.time_sleep_1)
             return confirma_atualizacao
