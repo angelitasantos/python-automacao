@@ -108,7 +108,10 @@ class XMLListasResult:
                 if existe_arquivo_em_massa and (ProcResult.cod_proc == '12' or ProcResult.cod_proc == '23'):
                     existe_arquivo_capa, caminho_capa_modelo, diretorio, subdiretorio = XMLListas.listar_caminhos_arquivo_em_massa(Base.self)
                     listas_caminho_em_massa = XMLListas.criar_listas_em_massa(Base.self, caminho_capa_modelo, diretorio, subdiretorio)
-                    lista_processos = listas_caminho_em_massa[7]
+                    lista_processos = []
+                    for processo in listas_caminho_em_massa[7]:
+                        if processo != 'None':
+                            lista_processos.append(processo)
                     qtd_processos = len(lista_processos)
 
                 elif ProcResult.cod_proc == '11' or ProcResult.cod_proc == '21':
@@ -182,3 +185,5 @@ class XMLListasResult:
             return listas_caminho_em_massa, qtd_processos, lista_processos
         except:
             Base.alertar_error_except(self, 'classXMLListas', 'definir_listas_caminho_em_massa')
+
+

@@ -14,7 +14,7 @@ class ExcelExterno:
         return self.excel
 
     nome_arquivo = 'main_variaveis_senha_2023.xlsx'
-    dir_arquivo = 'C:\\'
+    dir_arquivo = 'C:\\EMPRESA\\CAPAS MODELO CLIENTE\\'
     caminho_arquivo = dir_arquivo + nome_arquivo
     existe_arquivo_main_variaveis, arquivo_main_variaveis = Base.pesquisar_existe_arquivo(Base.self, dir_arquivo, nome_arquivo)
 
